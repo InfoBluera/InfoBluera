@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:code_line/src/constants/app_constants.dart';
-import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
 import 'package:code_line/src/common_widgets/glass_container.dart';
+import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
+import 'package:code_line/src/constants/app_constants.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class ServicesSection extends StatelessWidget {
@@ -50,10 +50,10 @@ class ServicesSection extends StatelessWidget {
                   alignment: WrapAlignment.center,
                   children: [
                     _ServiceCard(
-                      icon: Icons.web,
-                      title: 'Web Platforms',
+                      icon: Icons.smartphone,
+                      title: 'Mobile App Development',
                       description:
-                          'High-performance web applications built with Flutter, React, and Next.js.',
+                          'Cross-platform excellence using Flutter. We build native-quality apps for Android, iOS, and Web from a single codebase, ensuring consistent performance and wider reach.',
                       width: _cardWidth(
                         constraints.maxWidth,
                         isMobile,
@@ -62,10 +62,10 @@ class ServicesSection extends StatelessWidget {
                       delay: 0,
                     ),
                     _ServiceCard(
-                      icon: Icons.smartphone,
-                      title: 'Mobile Ecosystems',
+                      icon: Icons.web,
+                      title: 'Web Application Development',
                       description:
-                          'Native-feel iOS and Android apps with unified codebases and smooth animations.',
+                          'Custom, scalable web solutions tailored to your business needs. We create responsive, high-speed web apps that deliver seamless user experiences across all devices.',
                       width: _cardWidth(
                         constraints.maxWidth,
                         isMobile,
@@ -74,10 +74,10 @@ class ServicesSection extends StatelessWidget {
                       delay: 100,
                     ),
                     _ServiceCard(
-                      icon: Icons.cloud_done,
-                      title: 'Cloud Infrastructure',
+                      icon: Icons.api,
+                      title: 'Backend & API Development',
                       description:
-                          'Scalable microservices on AWS/Google Cloud designed for 99.9% uptime.',
+                          'Robust server-side architecture using Node.js. We design secure RESTful APIs to ensure efficient data communication and high availability for your applications.',
                       width: _cardWidth(
                         constraints.maxWidth,
                         isMobile,
@@ -86,16 +86,100 @@ class ServicesSection extends StatelessWidget {
                       delay: 200,
                     ),
                     _ServiceCard(
-                      icon: Icons.design_services,
-                      title: 'UI/UX Design',
+                      icon: Icons.dashboard,
+                      title: 'Admin Dashboards & Custom Software',
                       description:
-                          'Award-winning interfaces that prioritize user retention and brand identity.',
+                          'Powerful admin panels and bespoke software tools to streamline your operations. Gain insights and control with intuitive, data-driven interfaces.',
                       width: _cardWidth(
                         constraints.maxWidth,
                         isMobile,
                         isTablet,
                       ),
                       delay: 300,
+                    ),
+                    _ServiceCard(
+                      icon: Icons.cloud_upload,
+                      title: 'Cloud Deployment & Server Management',
+                      description:
+                          'Secure and scalable cloud infrastructure management using AWS (EC2, RDS, S3). We ensure your applications are always online, fast, and protected.',
+                      width: _cardWidth(
+                        constraints.maxWidth,
+                        isMobile,
+                        isTablet,
+                      ),
+                      delay: 400,
+                    ),
+                    _ServiceCard(
+                      icon: Icons.psychology,
+                      title: 'AI & Automation Solutions',
+                      description:
+                          'Intelligent chatbots and smart automation systems that enhance user engagement and optimize internal workflows, driving efficiency and innovation.',
+                      width: _cardWidth(
+                        constraints.maxWidth,
+                        isMobile,
+                        isTablet,
+                      ),
+                      delay: 500,
+                    ),
+                    _ServiceCard(
+                      icon: Icons.design_services,
+                      title: 'UI/UX Design',
+                      description:
+                          'Modern, user-focused designs that captivate. We combine aesthetics with usability to create intuitive interfaces that users love to interact with.',
+                      width: _cardWidth(
+                        constraints.maxWidth,
+                        isMobile,
+                        isTablet,
+                      ),
+                      delay: 600,
+                    ),
+                    _ServiceCard(
+                      icon: Icons.rocket_launch,
+                      title: 'MVP Development for Startups',
+                      description:
+                          'Rapid prototyping and MVP development to help startups validate ideas quickly. We deliver high-quality core features to get you to market fast.',
+                      width: _cardWidth(
+                        constraints.maxWidth,
+                        isMobile,
+                        isTablet,
+                      ),
+                      delay: 700,
+                    ),
+                    _ServiceCard(
+                      icon: Icons.shopping_cart,
+                      title: 'E-commerce Application Development',
+                      description:
+                          'Feature-rich e-commerce platforms with secure payment gateways, inventory management, and smooth checkout flows to boost your online sales.',
+                      width: _cardWidth(
+                        constraints.maxWidth,
+                        isMobile,
+                        isTablet,
+                      ),
+                      delay: 800,
+                    ),
+                    _ServiceCard(
+                      icon: Icons.storage,
+                      title: 'Database Design & Optimization',
+                      description:
+                          'Efficient database schema design and optimization using PostgreSQL. We ensure data integrity, fast query performance, and scalability for growing data needs.',
+                      width: _cardWidth(
+                        constraints.maxWidth,
+                        isMobile,
+                        isTablet,
+                      ),
+                      delay: 900,
+                    ),
+                    _ServiceCard(
+                      icon: Icons.build,
+                      title: 'Maintenance & Support',
+                      description:
+                          'Ongoing maintenance, support, and feature enhancements. We keep your software up-to-date, secure, and evolving with your business requirements.',
+                      width: _cardWidth(
+                        constraints.maxWidth,
+                        isMobile,
+                        isTablet,
+                      ),
+                      delay: 1000,
                     ),
                   ],
                 );
@@ -122,13 +206,12 @@ class _ServiceCard extends StatefulWidget {
   final int delay;
 
   const _ServiceCard({
-    Key? key,
     required this.icon,
     required this.title,
     required this.description,
     required this.width,
     this.delay = 0,
-  }) : super(key: key);
+  });
 
   @override
   State<_ServiceCard> createState() => _ServiceCardState();
