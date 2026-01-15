@@ -1,11 +1,24 @@
-import 'package:flutter/material.dart';
-import 'package:code_line/src/constants/app_constants.dart';
 import 'package:code_line/src/common_widgets/glass_container.dart';
-import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
 import 'package:code_line/src/common_widgets/gradient_button.dart';
+import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
+import 'package:code_line/src/constants/app_constants.dart';
+import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
-  const NavBar({Key? key}) : super(key: key);
+  final VoidCallback? onHomeTap;
+  final VoidCallback? onServicesTap;
+  final VoidCallback? onAboutTap;
+  final VoidCallback? onPortfolioTap;
+  final VoidCallback? onContactTap;
+
+  const NavBar({
+    super.key,
+    this.onHomeTap,
+    this.onServicesTap,
+    this.onAboutTap,
+    this.onPortfolioTap,
+    this.onContactTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,27 +32,35 @@ class NavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // Logo
-            Row(
-              children: [
-                Icon(Icons.code, color: AppColours.primary, size: 32),
-                const SizedBox(width: 8),
-                Text(
-                  'Codeline',
-                  style: AppTextStyle.h4.copyWith(fontWeight: FontWeight.bold),
-                ),
-              ],
+            GestureDetector(
+              onTap: onHomeTap,
+              child: Row(
+                children: [
+                  Icon(Icons.code, color: AppColours.primary, size: 32),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Codeline',
+                    style: AppTextStyle.h4.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
 
             // Desktop Links
             if (MediaQuery.of(context).size.width > AppBreakpoints.mobile)
               Row(
                 children: [
-                  _NavBarItem(title: 'Home', isActive: true),
-                  _NavBarItem(title: 'Services'),
-                  _NavBarItem(title: 'About'),
-                  _NavBarItem(title: 'Contact'),
+                  _NavBarItem(title: 'Home', onTap: onHomeTap, isActive: true),
+                  _NavBarItem(title: 'About', onTap: onAboutTap),
+                  _NavBarItem(title: 'Services', onTap: onServicesTap),
+                  _NavBarItem(title: 'Portfolio', onTap: onPortfolioTap),
                   const SizedBox(width: 24),
-                  GradientButton(text: 'Get Started', onPressed: () {}),
+                  GradientButton(
+                    text: 'Contact Us',
+                    onPressed: onContactTap ?? () {},
+                  ),
                 ],
               )
             else
@@ -60,19 +81,27 @@ class NavBar extends StatelessWidget {
 class _NavBarItem extends StatelessWidget {
   final String title;
   final bool isActive;
+  final VoidCallback? onTap;
 
-  const _NavBarItem({Key? key, required this.title, this.isActive = false})
-    : super(key: key);
+  const _NavBarItem({
+    super.key,
+    required this.title,
+    this.isActive = false,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Text(
-        title,
-        style: AppTextStyle.navLink.copyWith(
-          color: isActive ? AppColours.primary : AppColours.textSecondary,
-          fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Text(
+          title,
+          style: AppTextStyle.navLink.copyWith(
+            color: isActive ? AppColours.primary : AppColours.textSecondary,
+            fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
+          ),
         ),
       ),
     );

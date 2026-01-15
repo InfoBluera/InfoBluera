@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:code_line/src/constants/app_constants.dart';
 import 'package:code_line/src/features/home/presentation/home_screen.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const CodelineApp());
 }
 
 class CodelineApp extends StatelessWidget {
-  const CodelineApp({Key? key}) : super(key: key);
+  const CodelineApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class CodelineApp extends StatelessWidget {
           onSurface: AppColours.textPrimary,
         ),
       ),
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }
