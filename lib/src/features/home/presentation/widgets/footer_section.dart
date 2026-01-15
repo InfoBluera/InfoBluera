@@ -23,30 +23,47 @@ class FooterSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _buildContactInfo(),
-                          const SizedBox(height: 48),
-                          _buildBusinessInfo(),
-                          const SizedBox(height: 48),
-                          _buildQuickLinks(),
+                          const SizedBox(height: 60),
+                          _buildEnquiryForm(),
                         ],
                       )
                     : Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(flex: 3, child: _buildContactInfo()),
-                          const SizedBox(width: 48),
-                          Expanded(flex: 3, child: _buildBusinessInfo()),
-                          const SizedBox(width: 48),
-                          Expanded(flex: 2, child: _buildQuickLinks()),
+                          Expanded(flex: 4, child: _buildContactInfo()),
+                          const SizedBox(width: 80),
+                          Expanded(
+                            flex: 5,
+                            child: Container(
+                              padding: const EdgeInsets.all(32),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.03),
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(
+                                  color: Colors.white.withValues(alpha: 0.05),
+                                ),
+                              ),
+                              child: _buildEnquiryForm(),
+                            ),
+                          ),
                         ],
                       );
               },
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 80),
             const Divider(color: Colors.white12),
-            const SizedBox(height: 20),
-            Text(
-              '© 2026 Codeline. All rights reserved.',
-              style: AppTextStyle.caption,
+            const SizedBox(height: 32),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '© 2026 Codeline. All rights reserved.',
+                  style: AppTextStyle.caption.copyWith(
+                    color: AppColours.textTertiary,
+                  ),
+                ),
+                // Optional Social Icons or Links could go here
+              ],
             ),
           ],
         ),
@@ -60,81 +77,100 @@ class FooterSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.code, color: AppColours.primary, size: 32),
-            const SizedBox(width: 8),
-            Text('Codeline', style: AppTextStyle.h3),
+            Icon(Icons.code, color: AppColours.primary, size: 40),
+            const SizedBox(width: 12),
+            Text('Codeline', style: AppTextStyle.h2),
           ],
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: 24),
+        Text(
+          'Empowering businesses with cutting-edge digital solutions. We build scalable, high-performance applications tailored to your needs.',
+          style: AppTextStyle.body.copyWith(
+            color: AppColours.textSecondary,
+            height: 1.6,
+          ),
+        ),
+        const SizedBox(height: 48),
         _ContactItem(
           icon: Icons.location_on,
-          title: 'Location',
+          title: 'Headquarters',
           content: 'Kerala, India',
         ),
         const SizedBox(height: 24),
         _ContactItem(
           icon: Icons.email,
-          title: 'Email',
+          title: 'Email Us',
           content: 'codelinehelpdesk@gmail.com',
           onTap: () => _launchUrl('mailto:codelinehelpdesk@gmail.com'),
         ),
         const SizedBox(height: 24),
         _ContactItem(
           icon: Icons.phone,
-          title: 'Phone',
+          title: 'Call Us',
           content: '+91 98478 65571',
           onTap: () => _launchUrl('tel:+919847865571'),
         ),
         const SizedBox(height: 24),
         _ContactItem(
           icon: Icons.chat,
-          title: 'WhatsApp Support',
+          title: 'WhatsApp',
           content: '+91 81299 48257',
           onTap: () => _launchUrl('https://wa.me/918129948257'),
         ),
       ],
-    ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.1);
+    ).animate().fadeIn(delay: 100.ms).slideY(begin: 0.1);
   }
 
-  Widget _buildBusinessInfo() {
+  // _buildBusinessInfo removed
+
+  Widget _buildEnquiryForm() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Service & Support', style: AppTextStyle.h4),
+        Text('Ready to Start?', style: AppTextStyle.h3),
+        const SizedBox(height: 8),
+        Text(
+          'Send us a message and we\'ll get back to you shortly.',
+          style: AppTextStyle.body.copyWith(color: AppColours.textTertiary),
+        ),
         const SizedBox(height: 32),
-        _InfoBlock(
-          title: '🌐 Service Area',
-          content: 'Serving clients across India and internationally.',
+        _EnquiryField(hintText: 'Your Name', icon: Icons.person),
+        const SizedBox(height: 16),
+        _EnquiryField(hintText: 'Email / Phone', icon: Icons.contact_mail),
+        const SizedBox(height: 16),
+        _EnquiryField(
+          hintText: 'Tell us about your project',
+          icon: Icons.message,
+          maxLines: 4,
         ),
-        const SizedBox(height: 24),
-        _InfoBlock(
-          title: '🤝 Project Enquiries',
-          content:
-              'For new projects, collaborations, or consultations, feel free to reach out via email or WhatsApp.',
-        ),
-        const SizedBox(height: 24),
-        _InfoBlock(
-          title: '📩 Support & Assistance',
-          content:
-              'We provide ongoing support, maintenance, and technical assistance for all our solutions.',
+        const SizedBox(height: 32),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              // TODO: Implement send logic
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColours.primary,
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              elevation: 4,
+              shadowColor: AppColours.primary.withValues(alpha: 0.4),
+            ),
+            child: Text(
+              'Send Enquiry',
+              style: AppTextStyle.button.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
         ),
       ],
     ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.1);
-  }
-
-  Widget _buildQuickLinks() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Quick Links', style: AppTextStyle.h4),
-        const SizedBox(height: 32),
-        _FooterLink('Home'),
-        _FooterLink('About'),
-        _FooterLink('Services'),
-        _FooterLink('Portfolio'),
-        _FooterLink('Contact'),
-      ],
-    ).animate().fadeIn(delay: 300.ms).slideX(begin: 0.1);
   }
 
   Future<void> _launchUrl(String url) async {
@@ -167,14 +203,14 @@ class _ContactItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: AppColours.primary.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, color: AppColours.primaryLight, size: 20),
+            child: Icon(icon, color: AppColours.primaryLight, size: 22),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -184,16 +220,16 @@ class _ContactItem extends StatelessWidget {
                   color: AppColours.textTertiary,
                 ),
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 6),
               Text(
                 content,
                 style: AppTextStyle.body.copyWith(
                   color: onTap != null
-                      ? AppColours.textPrimary
-                      : AppColours.textSecondary,
-                  fontWeight: onTap != null ? FontWeight.w600 : FontWeight.w400,
-                  decoration: onTap != null ? TextDecoration.underline : null,
-                  decorationColor: AppColours.textPrimary,
+                      ? Colors
+                            .white // Brighter for contact details
+                      : Colors.white70,
+                  fontWeight: onTap != null ? FontWeight.w500 : FontWeight.w400,
+                  fontSize: 16,
                 ),
               ),
             ],
@@ -203,45 +239,47 @@ class _ContactItem extends StatelessWidget {
     );
   }
 }
+// _InfoBlock removed
 
-class _InfoBlock extends StatelessWidget {
-  final String title;
-  final String content;
+class _EnquiryField extends StatelessWidget {
+  final String hintText;
+  final IconData icon;
+  final int maxLines;
 
-  const _InfoBlock({required this.title, required this.content});
+  const _EnquiryField({
+    required this.hintText,
+    required this.icon,
+    this.maxLines = 1,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: AppTextStyle.bodyLarge.copyWith(
-            fontWeight: FontWeight.bold,
-            color: AppColours.textPrimary,
+    return TextField(
+      maxLines: maxLines,
+      style: const TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.4)),
+        prefixIcon: Icon(
+          icon,
+          color: AppColours.primary.withValues(alpha: 0.7),
+          size: 20,
+        ),
+        filled: true,
+        fillColor: Colors.white.withValues(alpha: 0.05),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            color: AppColours.primary.withValues(alpha: 0.5),
           ),
         ),
-        const SizedBox(height: 8),
-        Text(content, style: AppTextStyle.body),
-      ],
-    );
-  }
-}
-
-class _FooterLink extends StatelessWidget {
-  final String text;
-  const _FooterLink(this.text);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12.0),
-      child: Text(
-        text,
-        style: AppTextStyle.body.copyWith(
-          color: AppColours.textSecondary,
-          fontSize: 16,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 14,
         ),
       ),
     );
