@@ -5,6 +5,7 @@ import 'package:code_line/src/features/home/presentation/widgets/hero_section.da
 import 'package:code_line/src/features/home/presentation/widgets/nav_bar.dart';
 import 'package:code_line/src/features/home/presentation/widgets/portfolio_section.dart';
 import 'package:code_line/src/features/home/presentation/widgets/services_section.dart';
+import 'package:code_line/src/features/home/presentation/widgets/team_section.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -45,6 +46,7 @@ class HomeScreen extends StatelessWidget {
                 AboutUsSection(key: _aboutKey),
                 ServicesSection(key: _servicesKey),
                 PortfolioSection(key: _portfolioKey),
+                TeamSection(),
                 // Assuming FooterSection contains Contact info, or use it as Contact section
                 FooterSection(key: _contactKey),
               ],

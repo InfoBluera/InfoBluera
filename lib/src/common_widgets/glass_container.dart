@@ -1,6 +1,7 @@
 import 'dart:ui';
-import 'package:flutter/material.dart';
+
 import 'package:code_line/src/constants/app_constants.dart';
+import 'package:flutter/material.dart';
 
 class GlassContainer extends StatelessWidget {
   final Widget child;
@@ -9,16 +10,18 @@ class GlassContainer extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final BorderRadius? borderRadius;
   final Color? color;
+  final BoxBorder? border;
 
   const GlassContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.blur = 10,
     this.opacity = 0.1,
     this.padding,
     this.borderRadius,
     this.color,
-  }) : super(key: key);
+    this.border,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,9 @@ class GlassContainer extends StatelessWidget {
           decoration: BoxDecoration(
             color: (color ?? AppColours.surface).withValues(alpha: opacity),
             borderRadius: borderRadius ?? BorderRadius.circular(16),
-            border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+            border:
+                border ??
+                Border.all(color: Colors.white.withValues(alpha: 0.1)),
           ),
           child: child,
         ),
