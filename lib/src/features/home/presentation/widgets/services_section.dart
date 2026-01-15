@@ -19,8 +19,9 @@ class _ServicesSectionState extends State<ServicesSection> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveWrapper.isMobile(context);
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 100),
+      padding:  EdgeInsets.symmetric(vertical:isMobile?20: 100,horizontal: 12),
       // Add a subtle background gradient for the section
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -59,7 +60,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                   const SizedBox(height: 12),
                   Text(
                         'Comprehensive IT Solutions',
-                        style: AppTextStyle.h2,
+                        style: isMobile?AppTextStyle.h2.copyWith(fontSize: 32):AppTextStyle.h2,
                         textAlign: TextAlign.center,
                       )
                       .animate(target: _isVisible ? 1 : 0)
@@ -70,7 +71,7 @@ class _ServicesSectionState extends State<ServicesSection> {
                         width: 700,
                         child: Text(
                           'We deliver end-to-end digital services, moving from concept to deployment with precision and speed.',
-                          style: AppTextStyle.bodyLarge,
+                          style: isMobile? AppTextStyle.bodyLarge.copyWith(fontSize: 16): AppTextStyle.bodyLarge,
                           textAlign: TextAlign.center,
                         ),
                       )
@@ -112,9 +113,6 @@ class _ServicesSectionState extends State<ServicesSection> {
 
   double _cardWidth(double maxWidth, int columns) {
     if (columns == 1) return maxWidth;
-    // spacing is 24.
-    // 2 cols: (max - 24)/2
-    // 3 cols: (max - 48)/3
     return (maxWidth - (24 * (columns - 1))) / columns;
   }
 }

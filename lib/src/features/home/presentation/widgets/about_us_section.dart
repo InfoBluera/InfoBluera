@@ -9,6 +9,7 @@ class AboutUsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveWrapper.isMobile(context);
     return Container(
       color: Colors.transparent,
       padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 24),
@@ -26,7 +27,7 @@ class AboutUsSection extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               'About Us',
-              style: AppTextStyle.h2,
+              style: isMobile?AppTextStyle.h2.copyWith(fontSize: 32):AppTextStyle.h2,
               textAlign: TextAlign.center,
             ).animate().fadeIn(delay: 100.ms).slideY(begin: 0.1),
             const SizedBox(height: 48),
@@ -34,7 +35,7 @@ class AboutUsSection extends StatelessWidget {
               builder: (context, constraints) {
                 final isMobile = constraints.maxWidth < 800;
 
-                return isMobile ? _buildMobileLayout() : _buildDesktopLayout();
+                return isMobile ? _buildMobileLayout(context) : _buildDesktopLayout(context);
               },
             ),
           ],
@@ -43,22 +44,22 @@ class AboutUsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildMobileLayout() {
+  Widget _buildMobileLayout(BuildContext context) {
     return Column(
       children: [
-        _buildContentCard(),
+        _buildContentCard(context),
         const SizedBox(height: 32),
         _buildValues(), // Replaced stats with values
       ],
     );
   }
 
-  Widget _buildDesktopLayout() {
+  Widget _buildDesktopLayout(BuildContext context) {
     return IntrinsicHeight(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(flex: 3, child: _buildContentCard()),
+          Expanded(flex: 3, child: _buildContentCard(context)),
           const SizedBox(width: 48), // Increased spacing
           Expanded(
             flex: 2,
@@ -69,7 +70,8 @@ class AboutUsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildContentCard() {
+  Widget _buildContentCard(BuildContext context) {
+    final isMobile = ResponsiveWrapper.isMobile(context);
     return GlassContainer(
       padding: const EdgeInsets.all(40), // Increased padding
       child: Column(
@@ -77,17 +79,17 @@ class AboutUsSection extends StatelessWidget {
         children: [
           Text(
             'Innovating for the Future',
-            style: AppTextStyle.h3.copyWith(fontSize: 28),
+            style: isMobile?AppTextStyle.h3.copyWith(fontSize: 24):AppTextStyle.h3.copyWith(fontSize: 28),
           ),
           const SizedBox(height: 24),
           Text(
             'We are a passionate and experienced software development team dedicated to building scalable, secure, and high-performance digital products.',
-            style: AppTextStyle.bodyLarge.copyWith(height: 1.8),
+            style: isMobile?AppTextStyle.bodyLarge.copyWith(height: 1.8,fontSize: 16):AppTextStyle.bodyLarge.copyWith(height: 1.8),
           ),
           const SizedBox(height: 24),
           Text(
             'From startup MVPs to enterprise-level platforms, we partner with businesses to transform ideas into reliable, user-friendly technology solutions that drive real growth.',
-            style: AppTextStyle.body.copyWith(height: 1.8),
+            style: isMobile?AppTextStyle.body.copyWith(height: 1.8,fontSize: 14):AppTextStyle.body.copyWith(height: 1.8),
           ),
         ],
       ),
@@ -129,9 +131,7 @@ class AboutUsSection extends StatelessWidget {
     required String subtitle,
     required int delay,
   }) {
-    // Determine hover state locally if needed, but for simplicity in this stateless widget
-    // we'll stick to a nice static design with entrance animation.
-    // Use a GlassContainer for each item to make them pop.
+
     return GlassContainer(
       padding: const EdgeInsets.all(24),
       color: AppColours.primary.withValues(alpha: 0.05),

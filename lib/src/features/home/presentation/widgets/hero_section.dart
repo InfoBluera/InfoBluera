@@ -15,13 +15,22 @@ class HeroSection extends StatelessWidget {
     return Stack(
       children: [
         // Background Image with Gradient Overlay
+        // Background Image with Gradient Overlay
         Positioned.fill(
           child:
               Image.network(
                     'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
                     fit: BoxFit.cover,
                   )
-                  .animate()
+                  .animate(
+                    onPlay: (controller) => controller.repeat(reverse: true),
+                  )
+                  .scale(
+                    begin: const Offset(1.0, 1.0),
+                    end: const Offset(1.1, 1.1),
+                    duration: 10.seconds,
+                    curve: Curves.easeInOut,
+                  )
                   .fadeIn(duration: 1.seconds)
                   .saturate(begin: 0, end: 1, duration: 2.seconds),
         ),
@@ -76,9 +85,12 @@ class HeroSection extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
+    final isMobile = ResponsiveWrapper.isMobile(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(height: 20,),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
@@ -98,7 +110,9 @@ class HeroSection extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.stars, color: AppColours.accent, size: 16),
+              const Icon(Icons.stars, color: AppColours.accent, size: 16)
+                  .animate(onPlay: (c) => c.repeat())
+                  .shimmer(duration: 2.seconds, delay: 3.seconds),
               const SizedBox(width: 8),
               Text(
                 'PREMIUM IT SOLUTIONS',
@@ -114,7 +128,9 @@ class HeroSection extends StatelessWidget {
         const SizedBox(height: 32),
         RichText(
           text: TextSpan(
-            style: AppTextStyle.h1.copyWith(height: 1.1),
+            style: isMobile
+                ? AppTextStyle.h1.copyWith(height: 1.1, fontSize: 32)
+                : AppTextStyle.h1.copyWith(height: 1.1),
             children: [
               const TextSpan(text: 'Building the\n'),
               TextSpan(
@@ -134,81 +150,105 @@ class HeroSection extends StatelessWidget {
           'We craft high-performance websites, mobile apps, and enterprise software that drives growth. Trusted by industry leaders.',
           style: AppTextStyle.bodyLarge.copyWith(
             color: AppColours.textSecondary,
+            fontSize: isMobile ? 14 : 18,
           ),
         ).animate().fadeIn(delay: 400.ms).slideY(begin: 0.2),
         const SizedBox(height: 48),
-        Row(
-          children: [
-            GradientButton(
-                  text: 'Start Your Project',
-                  onPressed: () {},
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 32,
-                    vertical: 16,
+        isMobile
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  GradientButton(
+                        text: 'Start Your Project',
+                        onPressed: () {},
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 16,
+                        ),
+                      )
+                      .animate()
+                      .scale(
+                        delay: 600.ms,
+                        duration: 400.ms,
+                        curve: Curves.easeOutBack,
+                      )
+                      .shimmer(delay: 1000.ms, duration: 1500.ms),
+                  const SizedBox(height: 16),
+                  _GlassButton(
+                    text: 'View Portfolio',
+                    onPressed: () {},
+                  ).animate().scale(
+                    delay: 700.ms,
+                    duration: 400.ms,
+                    curve: Curves.easeOutBack,
                   ),
-                )
-                .animate()
-                .scale(
-                  delay: 600.ms,
-                  duration: 400.ms,
-                  curve: Curves.easeOutBack,
-                )
-                .shimmer(delay: 1000.ms, duration: 1500.ms),
-            const SizedBox(width: 24),
-            _GlassButton(
-              text: 'View Portfolio',
-              onPressed: () {},
-            ).animate().scale(
-              delay: 700.ms,
-              duration: 400.ms,
-              curve: Curves.easeOutBack,
-            ),
-          ],
-        ),
+                ],
+              )
+            : Row(
+                children: [
+                  GradientButton(
+                        text: 'Start Your Project',
+                        onPressed: () {},
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 16,
+                        ),
+                      )
+                      .animate()
+                      .scale(
+                        delay: 600.ms,
+                        duration: 400.ms,
+                        curve: Curves.easeOutBack,
+                      )
+                      .shimmer(delay: 1000.ms, duration: 1500.ms),
+                  const SizedBox(width: 24),
+                  _GlassButton(
+                    text: 'View Portfolio',
+                    onPressed: () {},
+                  ).animate().scale(
+                    delay: 700.ms,
+                    duration: 400.ms,
+                    curve: Curves.easeOutBack,
+                  ),
+                ],
+              ),
       ],
     );
   }
 
   Widget _build3DElement() {
-    return Container(
+    return SizedBox(
       height: 500,
       width: double.infinity,
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Simulated 3D Element (Using basic shapes + blur for now)
-          // In real production, this would be a Rive animation or 3D object
+          // Ambient Glow Pulse
           Container(
-                width: 300,
-                height: 300,
+                width: 250,
+                height: 250,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColours.primary.withValues(alpha: 0.4),
-                      Colors.transparent,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
+                  color: AppColours.primary.withValues(alpha: 0.2),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColours.primary.withValues(alpha: 0.3),
+                      blurRadius: 60,
+                      spreadRadius: 20,
+                    ),
+                  ],
                 ),
               )
-              .animate(onPlay: (c) => c.repeat())
-              .rotate(duration: 10.seconds)
+              .animate(onPlay: (c) => c.repeat(reverse: true))
               .scale(
                 begin: const Offset(1, 1),
-                end: const Offset(1.1, 1.1),
-                duration: 2.seconds,
+                end: const Offset(1.5, 1.5),
+                duration: 3.seconds,
                 curve: Curves.easeInOut,
               )
-              .then(delay: 100.ms) // pause
-              .scale(
-                begin: const Offset(1.1, 1.1),
-                end: const Offset(1, 1),
-                duration: 2.seconds,
-                curve: Curves.easeInOut,
-              ),
+              .fade(begin: 0.2, end: 0.6, duration: 3.seconds),
 
+          // Main 3D Card
           ClipRRect(
                 borderRadius: BorderRadius.circular(24),
                 child: BackdropFilter(
@@ -222,6 +262,13 @@ class HeroSection extends StatelessWidget {
                       border: Border.all(
                         color: Colors.white.withValues(alpha: 0.1),
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.2),
+                          blurRadius: 30,
+                          offset: const Offset(0, 20),
+                        ),
+                      ],
                     ),
                     child: Center(
                       child: Icon(
@@ -233,23 +280,13 @@ class HeroSection extends StatelessWidget {
                   ),
                 ),
               )
-              .animate()
-              .fadeIn(delay: 500.ms)
-              .slideY(begin: 0.2)
+              .animate(onPlay: (c) => c.repeat(reverse: true))
               .moveY(
                 begin: 0,
                 end: -20,
                 duration: 3.seconds,
                 curve: Curves.easeInOut,
-              )
-              .then()
-              .moveY(
-                begin: -20,
-                end: 0,
-                duration: 3.seconds,
-                curve: Curves.easeInOut,
-              )
-              .animate(onPlay: (c) => c.repeat()),
+              ),
         ],
       ),
     );
@@ -260,14 +297,12 @@ class _GlassButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const _GlassButton({Key? key, required this.text, required this.onPressed})
-    : super(key: key);
+  const _GlassButton({super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onPressed,
-      borderRadius: BorderRadius.circular(8),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
         decoration: BoxDecoration(
