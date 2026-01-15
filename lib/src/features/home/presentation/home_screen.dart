@@ -27,46 +27,49 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColours.background,
-      endDrawer: _MobileDrawer(
-        onHomeTap: () => _scrollToSection(_homeKey),
-        onServicesTap: () => _scrollToSection(_servicesKey),
-        onAboutTap: () => _scrollToSection(_aboutKey),
-        onPortfolioTap: () => _scrollToSection(_portfolioKey),
-        onContactTap: () => _scrollToSection(_contactKey),
-      ),
-      body: Stack(
-        children: [
-          // Main Scrollable Content
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                HeroSection(key: _homeKey),
-                AboutUsSection(key: _aboutKey),
-                ServicesSection(key: _servicesKey),
-                PortfolioSection(key: _portfolioKey),
-                TeamSection(),
-                // Assuming FooterSection contains Contact info, or use it as Contact section
-                FooterSection(key: _contactKey),
-              ],
-            ),
-          ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColours.background,
+        endDrawer: _MobileDrawer(
+          onHomeTap: () => _scrollToSection(_homeKey),
+          onServicesTap: () => _scrollToSection(_servicesKey),
+          onAboutTap: () => _scrollToSection(_aboutKey),
+          onPortfolioTap: () => _scrollToSection(_portfolioKey),
+          onContactTap: () => _scrollToSection(_contactKey),
+        ),
+        body: Stack(
+          children: [
+            // Main Scrollable Content
+            SingleChildScrollView(
+              child: Column(
+                children: [
 
-          // Fixed Navigation Bar
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: NavBar(
-              onHomeTap: () => _scrollToSection(_homeKey),
-              onServicesTap: () => _scrollToSection(_servicesKey),
-              onAboutTap: () => _scrollToSection(_aboutKey),
-              onPortfolioTap: () => _scrollToSection(_portfolioKey),
-              onContactTap: () => _scrollToSection(_contactKey),
+                  HeroSection(key: _homeKey),
+                  AboutUsSection(key: _aboutKey),
+                  ServicesSection(key: _servicesKey),
+                  PortfolioSection(key: _portfolioKey),
+                  TeamSection(),
+                  // Assuming FooterSection contains Contact info, or use it as Contact section
+                  FooterSection(key: _contactKey),
+                ],
+              ),
             ),
-          ),
-        ],
+      
+            // Fixed Navigation Bar
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: NavBar(
+                onHomeTap: () => _scrollToSection(_homeKey),
+                onServicesTap: () => _scrollToSection(_servicesKey),
+                onAboutTap: () => _scrollToSection(_aboutKey),
+                onPortfolioTap: () => _scrollToSection(_portfolioKey),
+                onContactTap: () => _scrollToSection(_contactKey),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

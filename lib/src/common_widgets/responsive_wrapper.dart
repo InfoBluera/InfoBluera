@@ -11,6 +11,16 @@ class ResponsiveWrapper extends StatelessWidget {
     this.constrainConfig = true,
   }) : super(key: key);
 
+  static bool isMobile(BuildContext context) =>
+      MediaQuery.of(context).size.width < AppBreakpoints.tablet;
+
+  static bool isTablet(BuildContext context) =>
+      MediaQuery.of(context).size.width >= AppBreakpoints.tablet &&
+      MediaQuery.of(context).size.width < AppBreakpoints.laptop;
+
+  static bool isDesktop(BuildContext context) =>
+      MediaQuery.of(context).size.width >= AppBreakpoints.laptop;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
