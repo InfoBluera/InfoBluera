@@ -17,6 +17,7 @@ class _TeamSectionState extends State<TeamSection> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveWrapper.isMobile(context);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 24),
       decoration: BoxDecoration(
@@ -49,7 +50,7 @@ class _TeamSectionState extends State<TeamSection> {
                   const SizedBox(height: 12),
                   Text(
                         'Meet the Minds Behind the Code',
-                        style: AppTextStyle.h2,
+                        style: isMobile?AppTextStyle.h2.copyWith(fontSize: 32):AppTextStyle.h2,
                         textAlign: TextAlign.center,
                       )
                       .animate(target: _isVisible ? 1 : 0)

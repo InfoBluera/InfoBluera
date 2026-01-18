@@ -21,7 +21,10 @@ class _ServicesSectionState extends State<ServicesSection> {
   Widget build(BuildContext context) {
     final isMobile = ResponsiveWrapper.isMobile(context);
     return Container(
-      padding:  EdgeInsets.symmetric(vertical:isMobile?20: 100,horizontal: 12),
+      padding: EdgeInsets.symmetric(
+        vertical: isMobile ? 20 : 100,
+        horizontal: 12,
+      ),
       // Add a subtle background gradient for the section
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -60,7 +63,9 @@ class _ServicesSectionState extends State<ServicesSection> {
                   const SizedBox(height: 12),
                   Text(
                         'Comprehensive IT Solutions',
-                        style: isMobile?AppTextStyle.h2.copyWith(fontSize: 32):AppTextStyle.h2,
+                        style: isMobile
+                            ? AppTextStyle.h2.copyWith(fontSize: 32)
+                            : AppTextStyle.h2,
                         textAlign: TextAlign.center,
                       )
                       .animate(target: _isVisible ? 1 : 0)
@@ -71,7 +76,9 @@ class _ServicesSectionState extends State<ServicesSection> {
                         width: 700,
                         child: Text(
                           'We deliver end-to-end digital services, moving from concept to deployment with precision and speed.',
-                          style: isMobile? AppTextStyle.bodyLarge.copyWith(fontSize: 16): AppTextStyle.bodyLarge,
+                          style: isMobile
+                              ? AppTextStyle.bodyLarge.copyWith(fontSize: 16)
+                              : AppTextStyle.bodyLarge,
                           textAlign: TextAlign.center,
                         ),
                       )
@@ -150,7 +157,7 @@ class _AnimatedServiceCardState extends State<_AnimatedServiceCard> {
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeOutCubic,
                 width: widget.width,
-                height: 380, // Fixed height for uniformity
+                constraints: const BoxConstraints(minHeight: 380),
                 // Lift effect on hover
                 transform: _isHovered
                     ? Matrix4.translationValues(0, -12, 0)

@@ -38,7 +38,7 @@ class GradientButton extends StatelessWidget {
             padding:
                 padding ??
                 const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            child: Text(text, style: AppTextStyle.button),
+            child: Center(child: Text(text, style: AppTextStyle.button)),
           ),
         ),
       ),
