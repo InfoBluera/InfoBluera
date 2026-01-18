@@ -2,6 +2,7 @@ import 'package:code_line/src/constants/app_constants.dart';
 import 'package:code_line/src/features/home/presentation/widgets/about_us_section.dart';
 import 'package:code_line/src/features/home/presentation/widgets/footer_section.dart';
 import 'package:code_line/src/features/home/presentation/widgets/hero_section.dart';
+import 'package:code_line/src/features/home/presentation/widgets/mobile_drawer.dart';
 import 'package:code_line/src/features/home/presentation/widgets/nav_bar.dart';
 import 'package:code_line/src/features/home/presentation/widgets/portfolio_section.dart';
 import 'package:code_line/src/features/home/presentation/widgets/services_section.dart';
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColours.background,
-        endDrawer: _MobileDrawer(
+        endDrawer: MobileDrawer(
           onHomeTap: () => _scrollToSection(_homeKey),
           onServicesTap: () => _scrollToSection(_servicesKey),
           onAboutTap: () => _scrollToSection(_aboutKey),
@@ -43,7 +44,6 @@ class HomeScreen extends StatelessWidget {
             SingleChildScrollView(
               child: Column(
                 children: [
-
                   HeroSection(key: _homeKey),
                   AboutUsSection(key: _aboutKey),
                   ServicesSection(key: _servicesKey),
@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-      
+
             // Fixed Navigation Bar
             Positioned(
               top: 0,
@@ -70,80 +70,6 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _MobileDrawer extends StatelessWidget {
-  final VoidCallback? onHomeTap;
-  final VoidCallback? onServicesTap;
-  final VoidCallback? onAboutTap;
-  final VoidCallback? onPortfolioTap;
-  final VoidCallback? onContactTap;
-
-  const _MobileDrawer({
-    this.onHomeTap,
-    this.onServicesTap,
-    this.onAboutTap,
-    this.onPortfolioTap,
-    this.onContactTap,
-  }) : super();
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: AppColours.background,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(
-              gradient: AppColours.primaryGradient,
-            ),
-            child: Center(
-              child: Text(
-                'Codeline',
-                style: AppTextStyle.h3.copyWith(color: Colors.white),
-              ),
-            ),
-          ),
-          ListTile(
-            title: Text('Home', style: AppTextStyle.bodyLarge),
-            onTap: () {
-              Navigator.pop(context);
-              onHomeTap?.call();
-            },
-          ),
-          ListTile(
-            title: Text('About', style: AppTextStyle.bodyLarge),
-            onTap: () {
-              Navigator.pop(context);
-              onAboutTap?.call();
-            },
-          ),
-          ListTile(
-            title: Text('Services', style: AppTextStyle.bodyLarge),
-            onTap: () {
-              Navigator.pop(context);
-              onServicesTap?.call();
-            },
-          ),
-          ListTile(
-            title: Text('Portfolio', style: AppTextStyle.bodyLarge),
-            onTap: () {
-              Navigator.pop(context);
-              onPortfolioTap?.call();
-            },
-          ),
-          ListTile(
-            title: Text('Contact', style: AppTextStyle.bodyLarge),
-            onTap: () {
-              Navigator.pop(context);
-              onContactTap?.call();
-            },
-          ),
-        ],
       ),
     );
   }

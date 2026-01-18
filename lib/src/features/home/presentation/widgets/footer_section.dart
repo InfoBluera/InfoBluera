@@ -1,7 +1,11 @@
+import 'dart:ui';
+import 'package:code_line/src/common_widgets/glass_container.dart';
+import 'package:code_line/src/common_widgets/gradient_button.dart';
 import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
 import 'package:code_line/src/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FooterSection extends StatelessWidget {
@@ -11,62 +15,106 @@ class FooterSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppColours.secondary,
-      padding: const EdgeInsets.only(top: 80, bottom: 20, left: 24, right: 24),
-      child: ResponsiveWrapper(
-        child: Column(
-          children: [
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final isMobile = constraints.maxWidth < 900;
-                return isMobile
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildContactInfo(),
-                          const SizedBox(height: 60),
-                          _buildEnquiryForm(),
-                        ],
-                      )
-                    : Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(flex: 4, child: _buildContactInfo()),
-                          const SizedBox(width: 80),
-                          Expanded(
-                            flex: 5,
-                            child: Container(
-                              padding: const EdgeInsets.all(32),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.03),
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(
-                                  color: Colors.white.withValues(alpha: 0.05),
+      child: Stack(
+        children: [
+          // Background Gradient Element
+          Positioned(
+            top: -100,
+            right: -100,
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+              child: Container(
+                width: 400,
+                height: 400,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColours.primary.withValues(alpha: 0.05),
+                ),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 100,
+              bottom: 40,
+              left: 24,
+              right: 24,
+            ),
+            child: ResponsiveWrapper(
+              child: Column(
+                children: [
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      final isMobile = constraints.maxWidth < 900;
+                      return isMobile
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _buildContactInfo(),
+                                const SizedBox(height: 60),
+                                _buildEnquiryForm(context),
+                              ],
+                            )
+                          : Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(flex: 4, child: _buildContactInfo()),
+                                const SizedBox(width: 80),
+                                Expanded(
+                                  flex: 5,
+                                  child: _buildEnquiryForm(context),
                                 ),
-                              ),
-                              child: _buildEnquiryForm(),
-                            ),
+                              ],
+                            );
+                    },
+                  ),
+                  const SizedBox(height: 80),
+                  Divider(color: Colors.white.withValues(alpha: 0.1)),
+                  const SizedBox(height: 32),
+                  Wrap(
+                    spacing: 24,
+                    runSpacing: 24,
+                    alignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Text(
+                        '© 2026 Codeline. All rights reserved.',
+                        style: AppTextStyle.caption.copyWith(
+                          color: AppColours.textTertiary,
+                        ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _SocialIcon(
+                            icon: FontAwesomeIcons.linkedin,
+                            url: 'https://linkedin.com',
+                          ),
+                          const SizedBox(width: 16),
+                          _SocialIcon(
+                            icon: FontAwesomeIcons.twitter,
+                            url: 'https://twitter.com',
+                          ),
+                          const SizedBox(width: 16),
+                          _SocialIcon(
+                            icon: FontAwesomeIcons.instagram,
+                            url: 'https://instagram.com',
+                          ),
+                          const SizedBox(width: 16),
+                          _SocialIcon(
+                            icon: FontAwesomeIcons.github,
+                            url: 'https://github.com',
                           ),
                         ],
-                      );
-              },
-            ),
-            const SizedBox(height: 80),
-            const Divider(color: Colors.white12),
-            const SizedBox(height: 32),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '© 2026 Codeline. All rights reserved.',
-                  style: AppTextStyle.caption.copyWith(
-                    color: AppColours.textTertiary,
+                      ),
+                    ],
                   ),
-                ),
-                // Optional Social Icons or Links could go here
-              ],
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -77,9 +125,16 @@ class FooterSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.code, color: AppColours.primary, size: 40),
-            const SizedBox(width: 12),
-            Text('Codeline', style: AppTextStyle.h2),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppColours.primary.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(Icons.code, color: AppColours.primary, size: 32),
+            ),
+            const SizedBox(width: 16),
+            Text('Codeline', style: AppTextStyle.h2.copyWith(fontSize: 32)),
           ],
         ),
         const SizedBox(height: 24),
@@ -92,27 +147,27 @@ class FooterSection extends StatelessWidget {
         ),
         const SizedBox(height: 48),
         _ContactItem(
-          icon: Icons.location_on,
+          icon: Icons.location_on_outlined,
           title: 'Headquarters',
           content: 'Kerala, India',
         ),
         const SizedBox(height: 24),
         _ContactItem(
-          icon: Icons.email,
+          icon: Icons.email_outlined,
           title: 'Email Us',
           content: 'codelinehelpdesk@gmail.com',
           onTap: () => _launchUrl('mailto:codelinehelpdesk@gmail.com'),
         ),
         const SizedBox(height: 24),
         _ContactItem(
-          icon: Icons.phone,
+          icon: Icons.phone_outlined,
           title: 'Call Us',
           content: '+91 98478 65571',
           onTap: () => _launchUrl('tel:+919847865571'),
         ),
         const SizedBox(height: 24),
         _ContactItem(
-          icon: Icons.chat,
+          icon: FontAwesomeIcons.whatsapp,
           title: 'WhatsApp',
           content: '+91 81299 48257',
           onTap: () => _launchUrl('https://wa.me/918129948257'),
@@ -121,55 +176,51 @@ class FooterSection extends StatelessWidget {
     ).animate().fadeIn(delay: 100.ms).slideY(begin: 0.1);
   }
 
-  // _buildBusinessInfo removed
-
-  Widget _buildEnquiryForm() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Ready to Start?', style: AppTextStyle.h3),
-        const SizedBox(height: 8),
-        Text(
-          'Send us a message and we\'ll get back to you shortly.',
-          style: AppTextStyle.body.copyWith(color: AppColours.textTertiary),
-        ),
-        const SizedBox(height: 32),
-        _EnquiryField(hintText: 'Your Name', icon: Icons.person),
-        const SizedBox(height: 16),
-        _EnquiryField(hintText: 'Email / Phone', icon: Icons.contact_mail),
-        const SizedBox(height: 16),
-        _EnquiryField(
-          hintText: 'Tell us about your project',
-          icon: Icons.message,
-          maxLines: 4,
-        ),
-        const SizedBox(height: 32),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {
-              // TODO: Implement send logic
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColours.primary,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-              shadowColor: AppColours.primary.withValues(alpha: 0.4),
-            ),
-            child: Text(
-              'Send Enquiry',
-              style: AppTextStyle.button.copyWith(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+  Widget _buildEnquiryForm(BuildContext context) {
+    return GlassContainer(
+      opacity: 0.05,
+      blur: 20,
+      borderRadius: BorderRadius.circular(24),
+      padding: const EdgeInsets.all(32),
+      border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Ready to Start?', style: AppTextStyle.h3),
+          const SizedBox(height: 8),
+          Text(
+            'Send us a message and we\'ll get back to you shortly.',
+            style: AppTextStyle.body.copyWith(color: AppColours.textTertiary),
+          ),
+          const SizedBox(height: 32),
+          const _EnquiryField(
+            hintText: 'Your Name',
+            icon: Icons.person_outline,
+          ),
+          const SizedBox(height: 16),
+          const _EnquiryField(
+            hintText: 'Email / Phone',
+            icon: Icons.mail_outline,
+          ),
+          const SizedBox(height: 16),
+          const _EnquiryField(
+            hintText: 'Tell us about your project',
+            icon: Icons.message_outlined,
+            maxLines: 4,
+          ),
+          const SizedBox(height: 32),
+          SizedBox(
+            width: double.infinity,
+            child: GradientButton(
+              text: 'Send Enquiry',
+              onPressed: () {
+                // TODO: Implement send logic
+              },
+              padding: const EdgeInsets.symmetric(vertical: 16),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.1);
   }
 
@@ -198,48 +249,87 @@ class _ContactItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: AppColours.primary.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    AppColours.primary.withValues(alpha: 0.2),
+                    AppColours.primary.withValues(alpha: 0.05),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: AppColours.primary.withValues(alpha: 0.2),
+                ),
+              ),
+              child: Icon(icon, color: AppColours.primaryLight, size: 20),
             ),
-            child: Icon(icon, color: AppColours.primaryLight, size: 22),
-          ),
-          const SizedBox(width: 20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: AppTextStyle.caption.copyWith(
-                  color: AppColours.textTertiary,
+            const SizedBox(width: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: AppTextStyle.caption.copyWith(
+                    color: AppColours.textTertiary,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                content,
-                style: AppTextStyle.body.copyWith(
-                  color: onTap != null
-                      ? Colors
-                            .white // Brighter for contact details
-                      : Colors.white70,
-                  fontWeight: onTap != null ? FontWeight.w500 : FontWeight.w400,
-                  fontSize: 16,
+                const SizedBox(height: 4),
+                Text(
+                  content,
+                  style: AppTextStyle.body.copyWith(
+                    color: onTap != null ? Colors.white : Colors.white70,
+                    fontWeight: onTap != null
+                        ? FontWeight.w600
+                        : FontWeight.w400,
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-// _InfoBlock removed
+
+class _SocialIcon extends StatelessWidget {
+  final IconData icon;
+  final String url;
+
+  const _SocialIcon({required this.icon, required this.url});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () async {
+        final uri = Uri.parse(url);
+        if (await canLaunchUrl(uri)) await launchUrl(uri);
+      },
+      borderRadius: BorderRadius.circular(50),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+          color: Colors.white.withValues(alpha: 0.05),
+        ),
+        child: Icon(icon, size: 18, color: AppColours.textSecondary),
+      ),
+    );
+  }
+}
 
 class _EnquiryField extends StatelessWidget {
   final String hintText;
@@ -260,26 +350,26 @@ class _EnquiryField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.4)),
-        prefixIcon: Icon(
-          icon,
-          color: AppColours.primary.withValues(alpha: 0.7),
-          size: 20,
-        ),
+        prefixIcon: Icon(icon, color: AppColours.textTertiary, size: 20),
         filled: true,
-        fillColor: Colors.white.withValues(alpha: 0.05),
+        fillColor: Colors.black.withValues(alpha: 0.2),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.05)),
+        ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
             color: AppColours.primary.withValues(alpha: 0.5),
           ),
         ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
-          vertical: 14,
+          vertical: 16,
         ),
       ),
     );
