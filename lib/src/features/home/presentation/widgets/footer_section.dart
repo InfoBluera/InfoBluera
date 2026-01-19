@@ -1,4 +1,6 @@
+import 'dart:developer';
 import 'dart:ui';
+
 import 'package:code_line/src/common_widgets/glass_container.dart';
 import 'package:code_line/src/common_widgets/gradient_button.dart';
 import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
@@ -6,10 +8,98 @@ import 'package:code_line/src/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
-class FooterSection extends StatelessWidget {
+class FooterSection extends StatefulWidget {
   const FooterSection({super.key});
+
+  @override
+  State<FooterSection> createState() => _FooterSectionState();
+}
+
+class _FooterSectionState extends State<FooterSection> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _messageController = TextEditingController();
+  bool _isLoading = false;
+
+  Future<void> _submitForm() async {
+    if (_nameController.text.isEmpty ||
+        _emailController.text.isEmpty ||
+        _messageController.text.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please fill all fields')));
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final url = Uri.parse(
+        'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeDX1jbHc21dhRyY6zLpIwhfqaMUACd89RiQSYyPARlYk1bAw/formResponse',
+      );
+
+      await http.post(
+        url,
+        body: {
+          'entry.2129506232': _nameController.text, // Name
+          'entry.1366067459': _emailController.text, // Email/Phone
+          'entry.2139908626': _messageController.text, // Message
+        },
+      );
+
+      _nameController.clear();
+      _emailController.clear();
+      _messageController.clear();
+
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => const _SuccessDialog(),
+        );
+      }
+    } catch (e) {
+      // Check for CORS error on Web (which implies success for Google Forms)
+      if (e.toString().contains('Failed to fetch')) {
+        _nameController.clear();
+        _emailController.clear();
+        _messageController.clear();
+
+        if (mounted) {
+          showDialog(
+            context: context,
+            builder: (context) => const _SuccessDialog(),
+          );
+        }
+        return;
+      }
+
+      if (mounted) {
+        log(e.toString());
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error sending message: $e')));
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _messageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -193,17 +283,20 @@ class FooterSection extends StatelessWidget {
             style: AppTextStyle.body.copyWith(color: AppColours.textTertiary),
           ),
           const SizedBox(height: 32),
-          const _EnquiryField(
+          _EnquiryField(
+            controller: _nameController,
             hintText: 'Your Name',
             icon: Icons.person_outline,
           ),
           const SizedBox(height: 16),
-          const _EnquiryField(
+          _EnquiryField(
+            controller: _emailController,
             hintText: 'Email / Phone',
             icon: Icons.mail_outline,
           ),
           const SizedBox(height: 16),
-          const _EnquiryField(
+          _EnquiryField(
+            controller: _messageController,
             hintText: 'Tell us about your project',
             icon: Icons.message_outlined,
             maxLines: 4,
@@ -212,10 +305,8 @@ class FooterSection extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: GradientButton(
-              text: 'Send Enquiry',
-              onPressed: () {
-                // TODO: Implement send logic
-              },
+              text: _isLoading ? 'Sending...' : 'Send Enquiry',
+              onPressed: _isLoading ? () {} : _submitForm,
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
           ),
@@ -229,6 +320,63 @@ class FooterSection extends StatelessWidget {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     }
+  }
+}
+
+class _SuccessDialog extends StatelessWidget {
+  const _SuccessDialog();
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: GlassContainer(
+        opacity: 0.1,
+        blur: 20,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: AppColours.primary.withValues(alpha: 0.2)),
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: AppColours.primary.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.check_rounded,
+                color: AppColours.primary,
+                size: 48,
+              ),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'Enquiry Sent!',
+              style: AppTextStyle.h3,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Thank you for reaching out. We will get back to you shortly.',
+              style: AppTextStyle.body.copyWith(
+                color: AppColours.textSecondary,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.infinity,
+              child: GradientButton(
+                text: 'Close',
+                onPressed: () => Navigator.pop(context),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -335,16 +483,19 @@ class _EnquiryField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   final int maxLines;
+  final TextEditingController? controller;
 
   const _EnquiryField({
     required this.hintText,
     required this.icon,
     this.maxLines = 1,
+    this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       maxLines: maxLines,
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(

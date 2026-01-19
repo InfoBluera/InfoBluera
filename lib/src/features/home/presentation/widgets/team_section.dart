@@ -50,7 +50,9 @@ class _TeamSectionState extends State<TeamSection> {
                   const SizedBox(height: 12),
                   Text(
                         'Meet the Minds Behind the Code',
-                        style: isMobile?AppTextStyle.h2.copyWith(fontSize: 32):AppTextStyle.h2,
+                        style: isMobile
+                            ? AppTextStyle.h2.copyWith(fontSize: 32)
+                            : AppTextStyle.h2,
                         textAlign: TextAlign.center,
                       )
                       .animate(target: _isVisible ? 1 : 0)
@@ -143,14 +145,14 @@ final List<TeamMember> kTeamMembers = [
     role: 'Senior Flutter Developer & Node.js Developer',
     description:
         'Specializes in full-stack development, delivering seamless Flutter applications backed by reliable and scalable Node.js architectures.',
-    accentColor: Colors.blue,
+    accentColor: Colors.green,
   ),
   TeamMember(
     name: 'Rishad',
     role: 'Senior Flutter Developer, Node.js & DevOps',
     description:
         'Builds scalable Flutter and Node.js applications, manages PostgreSQL databases, and implements CI/CD pipelines on AWS to ensure secure, reliable systems.',
-    accentColor: Colors.green,
+    accentColor: Colors.blue,
   ),
   TeamMember(
     name: 'Arun',
@@ -193,12 +195,6 @@ class _TeamCardState extends State<_TeamCard> {
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeOutCubic,
                 width: widget.width,
-                // Fixed height for uniformity? Optional, but good for alignment.
-                // Given description lengths vary slightly, allowing auto height or min height is safer.
-                // But requested equal height for service cards implies preference for uniformity.
-                // Let's try a min-height constrained container or fixed.
-                // Using a safe fixed height for now, adjustable.
-                // height: 350,
                 transform: _isHovered
                     ? Matrix4.translationValues(0, -8, 0)
                     : Matrix4.identity(),

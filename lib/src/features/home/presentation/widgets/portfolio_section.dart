@@ -226,44 +226,15 @@ class PortfolioSection extends StatelessWidget {
   }
 }
 
-class _ViewAllButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      borderRadius: BorderRadius.circular(30),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: AppColours.textSecondary.withValues(alpha: 0.3),
-          ),
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('View All Projects', style: AppTextStyle.button),
-            const SizedBox(width: 8),
-            const Icon(Icons.arrow_forward, size: 16, color: Colors.white)
-                .animate(onPlay: (c) => c.repeat())
-                .shimmer(delay: 2.seconds, duration: 2.seconds),
-          ],
-        ),
-      ),
-    ).animate().fadeIn(delay: 400.ms);
-  }
-}
 
 class _PortfolioCard extends StatefulWidget {
   final Project project;
   final EdgeInsetsGeometry margin;
 
   const _PortfolioCard({
-    Key? key,
     required this.project,
     this.margin = EdgeInsets.zero,
-  }) : super(key: key);
+  });
 
   @override
   State<_PortfolioCard> createState() => _PortfolioCardState();

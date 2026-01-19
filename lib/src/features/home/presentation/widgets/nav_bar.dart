@@ -84,7 +84,7 @@ class _NavBarItem extends StatelessWidget {
   final VoidCallback? onTap;
 
   const _NavBarItem({
-    super.key,
+    
     required this.title,
     this.isActive = false,
     this.onTap,

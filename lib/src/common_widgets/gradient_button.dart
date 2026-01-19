@@ -8,12 +8,12 @@ class GradientButton extends StatelessWidget {
   final BorderRadius? borderRadius;
 
   const GradientButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
     this.padding,
     this.borderRadius,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

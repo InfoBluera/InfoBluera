@@ -8,12 +8,12 @@ class Responsive extends StatelessWidget {
   final Widget? tv;
 
   const Responsive({
-    Key? key,
+    super.key,
     required this.mobile,
     this.tablet,
     this.desktop,
     this.tv,
-  }) : super(key: key);
+  });
 
   static bool isMobile(BuildContext context) =>
       MediaQuery.of(context).size.width < AppBreakpoints.mobile;
