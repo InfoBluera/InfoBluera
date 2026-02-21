@@ -1,4 +1,4 @@
-🚀 Infobluera
+# InfoBluera
 <p align="center"> <img src="https://readme-typing-svg.herokuapp.com?size=28&duration=3000&color=00BFFF&center=true&vCenter=true&width=700&lines=Building+Scalable+Digital+Solutions;Modern+Web+%26+Mobile+Applications;Secure+%26+High-Performance+Backend+Systems;Cloud+Ready+Architecture" /> </p> <p align="center"> <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" /> <img src="https://img.shields.io/badge/Repository-Private-blue?style=for-the-badge" /> <img src="https://img.shields.io/badge/Maintained-Yes-brightgreen?style=for-the-badge" /> </p>
 🌍 About Infobluera
 
