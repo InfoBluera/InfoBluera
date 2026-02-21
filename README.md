@@ -1,16 +1,22 @@
-# code_line
+🚀 Infobluera
+<p align="center"> <img src="https://readme-typing-svg.herokuapp.com?size=28&duration=3000&color=00BFFF&center=true&vCenter=true&width=700&lines=Building+Scalable+Digital+Solutions;Modern+Web+%26+Mobile+Applications;Secure+%26+High-Performance+Backend+Systems;Cloud+Ready+Architecture" /> </p> <p align="center"> <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" /> <img src="https://img.shields.io/badge/Repository-Private-blue?style=for-the-badge" /> <img src="https://img.shields.io/badge/Maintained-Yes-brightgreen?style=for-the-badge" /> </p>
+🌍 About Infobluera
 
-We are a trusted IT service company providing reliable software, web, and mobile solutions tailored to business needs. Our focus is on quality, performance, and scalable technology that helps organizations grow efficiently.
+Infobluera is a premium IT & software development brand focused on building scalable, secure, and high-performance digital products.
 
-## Getting Started
+We transform ideas into powerful digital solutions.
 
-This project is a starting point for a Flutter application.
+🔹 What We Build
 
-A few resources to get you started if this is your first Flutter project:
+🌐 Modern Responsive Websites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+📱 Cross-Platform Mobile Applications
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+⚙️ Scalable REST APIs
+
+☁️ Cloud Infrastructure (AWS)
+
+🎨 Clean UI / UX Systems
+
+🛠 Tech Stack
+<p align="center"> <img src="https://skillicons.dev/icons?i=flutter,nodejs,express,postgres,prisma,aws,nginx,html,css,js,git,github" /> </p>
