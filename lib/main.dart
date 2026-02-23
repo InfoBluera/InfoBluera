@@ -12,7 +12,7 @@ class CodelineApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Codeline Premium Web',
+      title: 'InfoBluera',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
