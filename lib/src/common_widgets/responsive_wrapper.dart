@@ -6,10 +6,10 @@ class ResponsiveWrapper extends StatelessWidget {
   final bool constrainConfig; // If true, applies max-width constraints
 
   const ResponsiveWrapper({
-    Key? key,
+    super.key,
     required this.child,
     this.constrainConfig = true,
-  }) : super(key: key);
+  });
 
   static bool isMobile(BuildContext context) =>
       MediaQuery.of(context).size.width < AppBreakpoints.tablet;

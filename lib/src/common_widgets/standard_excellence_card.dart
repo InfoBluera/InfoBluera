@@ -11,7 +11,7 @@ class StandardExcellenceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isMobile = ResponsiveWrapper.isMobile(context);
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: GlassContainer(
         padding: EdgeInsets.all(isMobile ? 20 : 32),
