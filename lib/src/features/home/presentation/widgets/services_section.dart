@@ -1,7 +1,7 @@
-import 'package:code_line/src/common_widgets/glass_container.dart';
-import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
-import 'package:code_line/src/constants/app_constants.dart';
-import 'package:code_line/src/features/home/presentation/widgets/service_item_model.dart';
+import 'package:infobluera/src/common_widgets/glass_container.dart';
+import 'package:infobluera/src/common_widgets/responsive_wrapper.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/service_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:visibility_detector/visibility_detector.dart';

@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:code_line/src/common_widgets/gradient_button.dart';
-import 'package:code_line/src/constants/app_constants.dart';
+import 'package:infobluera/src/common_widgets/gradient_button.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class MobileDrawer extends StatelessWidget {
@@ -72,7 +72,7 @@ class MobileDrawer extends StatelessWidget {
                             ),
                             const SizedBox(width: 12),
                             Text(
-                              'Codeline',
+                              'InfoBluera',
                               style: AppTextStyle.h3.copyWith(fontSize: 24),
                             ),
                           ],
@@ -169,7 +169,7 @@ class MobileDrawer extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              '© 2024 Codeline. All rights reserved.',
+                              '© 2024 InfoBluera. All rights reserved.',
                               style: AppTextStyle.caption.copyWith(
                                 color: AppColours.textTertiary,
                               ),

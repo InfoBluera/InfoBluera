@@ -1,13 +1,13 @@
-import 'package:code_line/src/constants/app_constants.dart';
-import 'package:code_line/src/features/home/presentation/home_screen.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
+import 'package:infobluera/src/features/home/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const CodelineApp());
+  runApp(const InfoBlureWeb());
 }
 
-class CodelineApp extends StatelessWidget {
-  const CodelineApp({super.key});
+class InfoBlureWeb extends StatelessWidget {
+  const InfoBlureWeb({super.key});
 
   @override
   Widget build(BuildContext context) {

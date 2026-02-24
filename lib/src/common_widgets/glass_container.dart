@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:code_line/src/constants/app_constants.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class GlassContainer extends StatelessWidget {
