@@ -1,7 +1,7 @@
-import 'package:code_line/src/common_widgets/glass_container.dart';
-import 'package:code_line/src/common_widgets/gradient_button.dart';
-import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
-import 'package:code_line/src/constants/app_constants.dart';
+import 'package:infobluera/src/common_widgets/glass_container.dart';
+import 'package:infobluera/src/common_widgets/gradient_button.dart';
+import 'package:infobluera/src/common_widgets/responsive_wrapper.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
@@ -39,7 +39,7 @@ class NavBar extends StatelessWidget {
                   Icon(Icons.code, color: AppColours.primary, size: 32),
                   const SizedBox(width: 8),
                   Text(
-                    'Codeline',
+                    'InfoBluera',
                     style: AppTextStyle.h4.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

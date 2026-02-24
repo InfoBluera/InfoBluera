@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:code_line/src/constants/app_constants.dart';
-import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
-import 'package:code_line/src/common_widgets/gradient_button.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
+import 'package:infobluera/src/common_widgets/responsive_wrapper.dart';
+import 'package:infobluera/src/common_widgets/gradient_button.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'dart:ui';
 
