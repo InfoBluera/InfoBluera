@@ -26,20 +26,21 @@ class HeroSection extends StatelessWidget {
                     'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
                     fit: BoxFit.cover,
                   )
-                  .animate(
-                    onPlay: (controller) => controller.repeat(reverse: true),
-                  )
-                  .scale(
-                    begin: const Offset(1.0, 1.0),
-                    end: const Offset(1.1, 1.1),
-                    duration: 10.seconds,
-                    curve: Curves.easeInOut,
-                  )
-                  .fadeIn(duration: 1.seconds)
-                  .saturate(begin: 0, end: 1, duration: 2.seconds),
+                  // .animate(
+                  //   onPlay: (controller) => controller.repeat(reverse: true),
+                  // )
+                  // .scale(
+                  //   begin: const Offset(1.0, 1.0),
+                  //   end: const Offset(1.1, 1.1),
+                  //   duration: 10.seconds,
+                  //   curve: Curves.easeInOut,
+                  // )
+                  // .fadeIn(duration: 1.seconds)
+                  // .saturate(begin: 0, end: 1, duration: 2.seconds),
         ),
         Positioned.fill(
           child: Container(
+
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -51,7 +52,9 @@ class HeroSection extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+          )
+
+
         ),
 
         // Content
@@ -68,16 +71,16 @@ class HeroSection extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(flex: 5, child: _buildContent(context)),
-                      const SizedBox(width: 60),
-                      Expanded(flex: 4, child: _build3DElement()),
+                      // const SizedBox(width: 60),
+                      // Expanded(flex: 4, child: _build3DElement()),
                     ],
                   )
                 else
                   Column(
                     children: [
                       _buildContent(context),
-                      const SizedBox(height: 60),
-                      _build3DElement(),
+                      // const SizedBox(height: 60),
+                      // _build3DElement(),
                     ],
                   ),
               ],
