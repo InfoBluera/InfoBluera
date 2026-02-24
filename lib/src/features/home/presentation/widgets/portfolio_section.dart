@@ -1,9 +1,9 @@
-import 'package:code_line/src/common_widgets/standard_excellence_card.dart';
-import 'package:code_line/src/features/home/domain/project_model.dart';
-import 'package:code_line/src/features/home/presentation/widgets/project_detail_view.dart';
+import 'package:infobluera/src/common_widgets/standard_excellence_card.dart';
+import 'package:infobluera/src/features/home/domain/project_model.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/project_detail_view.dart';
 import 'package:flutter/material.dart';
-import 'package:code_line/src/constants/app_constants.dart';
-import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
+import 'package:infobluera/src/common_widgets/responsive_wrapper.dart';
 
 import 'package:flutter_animate/flutter_animate.dart';
 
