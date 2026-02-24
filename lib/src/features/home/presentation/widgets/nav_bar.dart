@@ -56,11 +56,8 @@ class NavBar extends StatelessWidget {
                   _NavBarItem(title: 'About', onTap: onAboutTap),
                   _NavBarItem(title: 'Services', onTap: onServicesTap),
                   _NavBarItem(title: 'Portfolio', onTap: onPortfolioTap),
-                  const SizedBox(width: 24),
-                  GradientButton(
-                    text: 'Contact Us',
-                    onPressed: onContactTap ?? () {},
-                  ),
+                  _NavBarItem(title: 'Contact Us', onTap: onPortfolioTap),
+
                 ],
               )
             else

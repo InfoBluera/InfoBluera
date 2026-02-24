@@ -44,12 +44,15 @@ class HomeScreen extends StatelessWidget {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  HeroSection(key: _homeKey),
+                  HeroSection(
+                    key: _homeKey,
+                    onPortfolioTap: () => _scrollToSection(_portfolioKey),
+                    onContactTap: () => _scrollToSection(_contactKey),
+                  ),
                   AboutUsSection(key: _aboutKey),
                   ServicesSection(key: _servicesKey),
                   PortfolioSection(key: _portfolioKey),
                   TeamSection(),
-                  // Assuming FooterSection contains Contact info, or use it as Contact section
                   FooterSection(key: _contactKey),
                 ],
               ),
