@@ -6,7 +6,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'dart:ui';
 
 class HeroSection extends StatelessWidget {
-  const HeroSection({super.key});
+  final VoidCallback? onPortfolioTap;
+  final VoidCallback? onContactTap;
+  const HeroSection({
+    super.key,
+    required this.onPortfolioTap,
+    required this.onContactTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +20,6 @@ class HeroSection extends StatelessWidget {
 
     return Stack(
       children: [
-        // Background Image with Gradient Overlay
-        // Background Image with Gradient Overlay
         Positioned.fill(
           child:
               Image.network(
@@ -90,7 +94,7 @@ class HeroSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 20,),
+        SizedBox(height: 20),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
@@ -119,20 +123,23 @@ class HeroSection extends StatelessWidget {
                 style: AppTextStyle.caption.copyWith(
                   color: AppColours.primaryLight,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 1.5,
+                  letterSpacing: 0.4,
                 ),
               ),
             ],
           ),
         ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
-        const SizedBox(height: 32),
+        const SizedBox(height: 48),
         RichText(
           text: TextSpan(
             style: isMobile
-                ? AppTextStyle.h1.copyWith(height: 1.1, fontSize: 32)
-                : AppTextStyle.h1.copyWith(height: 1.1),
+                ? AppTextStyle.h1.copyWith(height: 1.2, fontSize: 26)
+                : AppTextStyle.h1.copyWith(height: 1.2),
             children: [
-              const TextSpan(text: 'Building the\n'),
+              const TextSpan(
+                text: 'Building the\n',
+                style: TextStyle(letterSpacing: 0.4, wordSpacing: 0.4),
+              ),
               TextSpan(
                 text: 'Digital Future',
                 style: TextStyle(
@@ -140,6 +147,8 @@ class HeroSection extends StatelessWidget {
                     ..shader = AppColours.primaryGradient.createShader(
                       const Rect.fromLTWH(0.0, 0.0, 300.0, 70.0),
                     ),
+                  letterSpacing: 0.4,
+                  wordSpacing: 0.4,
                 ),
               ),
             ],
@@ -160,7 +169,9 @@ class HeroSection extends StatelessWidget {
                 children: [
                   GradientButton(
                         text: 'Start Your Project',
-                        onPressed: () {},
+                        onPressed: () {
+                          onContactTap?.call();
+                        },
                         padding: const EdgeInsets.symmetric(
                           horizontal: 32,
                           vertical: 16,
@@ -173,10 +184,12 @@ class HeroSection extends StatelessWidget {
                         curve: Curves.easeOutBack,
                       )
                       .shimmer(delay: 1000.ms, duration: 1500.ms),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 14),
                   _GlassButton(
                     text: 'View Portfolio',
-                    onPressed: () {},
+                    onPressed: () {
+                      onPortfolioTap?.call();
+                    },
                   ).animate().scale(
                     delay: 700.ms,
                     duration: 400.ms,
@@ -188,7 +201,10 @@ class HeroSection extends StatelessWidget {
                 children: [
                   GradientButton(
                         text: 'Start Your Project',
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                          onContactTap?.call();
+                        },
                         padding: const EdgeInsets.symmetric(
                           horizontal: 32,
                           vertical: 16,
@@ -204,7 +220,10 @@ class HeroSection extends StatelessWidget {
                   const SizedBox(width: 24),
                   _GlassButton(
                     text: 'View Portfolio',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                      onPortfolioTap?.call();
+                    },
                   ).animate().scale(
                     delay: 700.ms,
                     duration: 400.ms,
@@ -297,7 +316,7 @@ class _GlassButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const _GlassButton({ required this.text, required this.onPressed});
+  const _GlassButton({required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -312,9 +331,11 @@ class _GlassButton extends StatelessWidget {
           ),
           color: Colors.white.withValues(alpha: 0.05),
         ),
-        child: Text(
-          text,
-          style: AppTextStyle.button.copyWith(color: AppColours.textPrimary),
+        child: Center(
+          child: Text(
+            text,
+            style: AppTextStyle.button.copyWith(color: AppColours.textPrimary),
+          ),
         ),
       ),
     );
