@@ -142,7 +142,7 @@ class PortfolioSection extends StatelessWidget {
     // );
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 100),
+      padding:  EdgeInsets.symmetric(vertical: ResponsiveWrapper.isMobile(context)?32:100),
       width: double.infinity,
       child: Column(
         children: [
@@ -156,7 +156,7 @@ class PortfolioSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'FEATURED WORK',
+                      'Featured Work',
                       style: AppTextStyle.caption.copyWith(
                         color: AppColours.accent,
                         fontWeight: FontWeight.bold,
@@ -170,7 +170,7 @@ class PortfolioSection extends StatelessWidget {
                       'Our Standard of Excellence',
                       textAlign: TextAlign.center,
                       style: ResponsiveWrapper.isMobile(context)
-                          ? AppTextStyle.h2.copyWith(fontSize: 32)
+                          ? AppTextStyle.h2.copyWith(fontSize: 24)
                           : AppTextStyle.h2,
                     ).animate().fadeIn().slideY(),
                   ],

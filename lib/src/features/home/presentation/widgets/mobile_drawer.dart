@@ -71,9 +71,24 @@ class MobileDrawer extends StatelessWidget {
                               size: 32,
                             ),
                             const SizedBox(width: 12),
-                            Text(
-                              'InfoBluera',
-                              style: AppTextStyle.h3.copyWith(fontSize: 24),
+                            // Text(
+                            //   'InfoBluera',
+                            //   style: AppTextStyle.h3.copyWith(fontSize: 24),
+                            // ),
+                            ShaderMask(
+                              shaderCallback: (bounds) => const LinearGradient(
+                                colors: [
+                                  Color(0xFF6C63FF), // purple
+                                  Color(0xFF00D4FF), // blue
+                                ],
+                              ).createShader(bounds),
+                              child: Text(
+                                'InfoBluera',
+                                style: AppTextStyle.h4.copyWith(
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -106,7 +121,7 @@ class MobileDrawer extends StatelessWidget {
                       children: [
                         _DrawerItem(
                           title: 'Home',
-                          icon: Icons.home_outlined,
+                          icon: Icons.home_filled,
                           onTap: () {
                             Navigator.pop(context);
                             onHomeTap?.call();
@@ -115,7 +130,7 @@ class MobileDrawer extends StatelessWidget {
                         ),
                         _DrawerItem(
                           title: 'About',
-                          icon: Icons.info_outline,
+                          icon: Icons.info,
                           onTap: () {
                             Navigator.pop(context);
                             onAboutTap?.call();
@@ -123,7 +138,7 @@ class MobileDrawer extends StatelessWidget {
                         ),
                         _DrawerItem(
                           title: 'Services',
-                          icon: Icons.grid_view_outlined,
+                          icon: Icons.grid_view_rounded,
                           onTap: () {
                             Navigator.pop(context);
                             onServicesTap?.call();
@@ -131,10 +146,18 @@ class MobileDrawer extends StatelessWidget {
                         ),
                         _DrawerItem(
                           title: 'Portfolio',
-                          icon: Icons.layers_outlined,
+                          icon: Icons.layers,
                           onTap: () {
                             Navigator.pop(context);
                             onPortfolioTap?.call();
+                          },
+                        ),
+                        _DrawerItem(
+                          title: 'Contact Us',
+                          icon: Icons.call,
+                          onTap: () {
+                            Navigator.pop(context);
+                            onContactTap?.call();
                           },
                         ),
                       ],
@@ -152,29 +175,14 @@ class MobileDrawer extends StatelessWidget {
                         ),
                       ),
                     ),
-                    child: Column(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: double.infinity,
-                          child: GradientButton(
-                            text: 'Contact Us',
-                            onPressed: () {
-                              Navigator.pop(context);
-                              onContactTap?.call();
-                            },
+                        Text(
+                          '©2024 InfoBluera. All rights reserved.',
+                          style: AppTextStyle.caption.copyWith(
+                            color: AppColours.textTertiary,
                           ),
-                        ),
-                        const SizedBox(height: 24),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '© 2024 InfoBluera. All rights reserved.',
-                              style: AppTextStyle.caption.copyWith(
-                                color: AppColours.textTertiary,
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     ),
@@ -241,6 +249,7 @@ class _DrawerItem extends StatelessWidget {
                         ? AppColours.textPrimary
                         : AppColours.textSecondary,
                     fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
+                    fontSize: 14
                   ),
                 ),
                 const Spacer(),

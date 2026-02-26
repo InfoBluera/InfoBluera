@@ -23,30 +23,30 @@ class StandardExcellenceCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: AppColours.primary.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child:
-                        const Icon(
-                              Icons.verified_outlined,
-                              color: AppColours.primary,
-                              size: 28,
-                            )
-                            .animate(onPlay: (c) => c.repeat(reverse: true))
-                            .scale(
-                              begin: const Offset(1, 1),
-                              end: const Offset(1.1, 1.1),
-                              duration: 2.seconds,
-                            ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Our Standard of Excellence',
-                    style: AppTextStyle.h3.copyWith(fontSize: 24, height: 1.2),
-                  ),
+                  // Container(
+                  //   padding: const EdgeInsets.all(12),
+                  //   decoration: BoxDecoration(
+                  //     color: AppColours.primary.withOpacity(0.1),
+                  //     borderRadius: BorderRadius.circular(12),
+                  //   ),
+                  //   child:
+                  //       const Icon(
+                  //             Icons.verified_outlined,
+                  //             color: AppColours.primary,
+                  //             size: 28,
+                  //           )
+                  //           .animate(onPlay: (c) => c.repeat(reverse: true))
+                  //           .scale(
+                  //             begin: const Offset(1, 1),
+                  //             end: const Offset(1.1, 1.1),
+                  //             duration: 2.seconds,
+                  //           ),
+                  // ),
+                  // const SizedBox(height: 16),
+                  // Text(
+                  //   'Our Standard of Excellence',
+                  //   style: AppTextStyle.h3.copyWith(fontSize: 24, height: 1.2),
+                  // ),
                   const SizedBox(height: 8),
                   Text(
                     'Quality that speaks for itself',
