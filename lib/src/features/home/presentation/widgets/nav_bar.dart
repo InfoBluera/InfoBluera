@@ -38,10 +38,25 @@ class NavBar extends StatelessWidget {
                 children: [
                   Icon(Icons.code, color: AppColours.primary, size: 32),
                   const SizedBox(width: 8),
-                  Text(
-                    'InfoBluera',
-                    style: AppTextStyle.h4.copyWith(
-                      fontWeight: FontWeight.bold,
+                  // Text(
+                  //   'InfoBluera',
+                  //   style: AppTextStyle.h4.copyWith(
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+                  ShaderMask(
+                    shaderCallback: (bounds) => const LinearGradient(
+                      colors: [
+                        Color(0xFF6C63FF), // purple
+                        Color(0xFF00D4FF), // blue
+                      ],
+                    ).createShader(bounds),
+                    child: Text(
+                      'InfoBluera',
+                      style: AppTextStyle.h4.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
@@ -57,7 +72,6 @@ class NavBar extends StatelessWidget {
                   _NavBarItem(title: 'Services', onTap: onServicesTap),
                   _NavBarItem(title: 'Portfolio', onTap: onPortfolioTap),
                   _NavBarItem(title: 'Contact Us', onTap: onPortfolioTap),
-
                 ],
               )
             else
@@ -80,12 +94,7 @@ class _NavBarItem extends StatelessWidget {
   final bool isActive;
   final VoidCallback? onTap;
 
-  const _NavBarItem({
-    
-    required this.title,
-    this.isActive = false,
-    this.onTap,
-  });
+  const _NavBarItem({required this.title, this.isActive = false, this.onTap});
 
   @override
   Widget build(BuildContext context) {

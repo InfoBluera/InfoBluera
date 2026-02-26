@@ -57,8 +57,77 @@ class AppBreakpoints {
   static const double tv = 1920;
 }
 
+// class AppTextStyle {
+//   static TextStyle get h1 => GoogleFonts.outfit(
+//     fontSize: 72,
+//     fontWeight: FontWeight.w800,
+//     color: AppColours.textPrimary,
+//     height: 1.1,
+//     letterSpacing: -1.5,
+//   );
+//
+//   static TextStyle get h2 => GoogleFonts.outfit(
+//     fontSize: 48,
+//     fontWeight: FontWeight.w700,
+//     color: AppColours.textPrimary,
+//     height: 1.2,
+//     letterSpacing: -0.5,
+//   );
+//
+//   static TextStyle get h3 => GoogleFonts.outfit(
+//     fontSize: 32,
+//     fontWeight: FontWeight.w600,
+//     color: AppColours.textPrimary,
+//     height: 1.3,
+//   );
+//
+//   static TextStyle get h4 => GoogleFonts.outfit(
+//     fontSize: 24,
+//     fontWeight: FontWeight.w600,
+//     color: AppColours.textPrimary,
+//     height: 1.4,
+//   );
+//
+//   static TextStyle get bodyLarge => GoogleFonts.inter(
+//     fontSize: 18,
+//     fontWeight: FontWeight.w400,
+//     color: AppColours.textSecondary,
+//     height: 1.6,
+//   );
+//
+//   static TextStyle get body => GoogleFonts.inter(
+//     fontSize: 16,
+//     fontWeight: FontWeight.w400,
+//     color: AppColours.textSecondary,
+//     height: 1.6,
+//   );
+//
+//   static TextStyle get button => GoogleFonts.inter(
+//     fontSize: 15,
+//     fontWeight: FontWeight.w600,
+//     color: Colors.white,
+//     letterSpacing: 0.5,
+//   );
+//
+//   static TextStyle get navLink => GoogleFonts.inter(
+//     fontSize: 15,
+//     fontWeight: FontWeight.w500,
+//     color: AppColours.textSecondary,
+//     letterSpacing: 0.3,
+//   );
+//
+//   static TextStyle get caption => GoogleFonts.inter(
+//     fontSize: 12,
+//     fontWeight: FontWeight.w400,
+//     color: AppColours.textTertiary,
+//     height: 1.5,
+//   );
+// }
+
+
 class AppTextStyle {
-  static TextStyle get h1 => GoogleFonts.outfit(
+  // Headings
+  static TextStyle get h1 => GoogleFonts.merriweather(
     fontSize: 72,
     fontWeight: FontWeight.w800,
     color: AppColours.textPrimary,
@@ -66,7 +135,7 @@ class AppTextStyle {
     letterSpacing: -1.5,
   );
 
-  static TextStyle get h2 => GoogleFonts.outfit(
+  static TextStyle get h2 => GoogleFonts.merriweather(
     fontSize: 48,
     fontWeight: FontWeight.w700,
     color: AppColours.textPrimary,
@@ -74,20 +143,21 @@ class AppTextStyle {
     letterSpacing: -0.5,
   );
 
-  static TextStyle get h3 => GoogleFonts.outfit(
+  static TextStyle get h3 => GoogleFonts.merriweather(
     fontSize: 32,
     fontWeight: FontWeight.w600,
     color: AppColours.textPrimary,
     height: 1.3,
   );
 
-  static TextStyle get h4 => GoogleFonts.outfit(
+  static TextStyle get h4 => GoogleFonts.merriweather(
     fontSize: 24,
     fontWeight: FontWeight.w600,
     color: AppColours.textPrimary,
     height: 1.4,
   );
 
+  // Body Text
   static TextStyle get bodyLarge => GoogleFonts.inter(
     fontSize: 18,
     fontWeight: FontWeight.w400,
@@ -102,20 +172,23 @@ class AppTextStyle {
     height: 1.6,
   );
 
-  static TextStyle get button => GoogleFonts.inter(
-    fontSize: 15,
+  // Buttons
+  static TextStyle get button => GoogleFonts.poppins(
+    fontSize: 14,
     fontWeight: FontWeight.w600,
     color: Colors.white,
     letterSpacing: 0.5,
   );
 
-  static TextStyle get navLink => GoogleFonts.inter(
-    fontSize: 15,
+  // Navigation Links
+  static TextStyle get navLink => GoogleFonts.poppins(
+    fontSize: 13,
     fontWeight: FontWeight.w500,
     color: AppColours.textSecondary,
     letterSpacing: 0.3,
   );
 
+  // Captions
   static TextStyle get caption => GoogleFonts.inter(
     fontSize: 12,
     fontWeight: FontWeight.w400,

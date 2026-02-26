@@ -3,7 +3,6 @@ import 'package:infobluera/src/constants/app_constants.dart';
 import 'package:infobluera/src/common_widgets/responsive_wrapper.dart';
 import 'package:infobluera/src/common_widgets/gradient_button.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'dart:ui';
 
 class HeroSection extends StatelessWidget {
   final VoidCallback? onPortfolioTap;
@@ -21,26 +20,13 @@ class HeroSection extends StatelessWidget {
     return Stack(
       children: [
         Positioned.fill(
-          child:
-              Image.network(
-                    'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
-                    fit: BoxFit.cover,
-                  )
-                  // .animate(
-                  //   onPlay: (controller) => controller.repeat(reverse: true),
-                  // )
-                  // .scale(
-                  //   begin: const Offset(1.0, 1.0),
-                  //   end: const Offset(1.1, 1.1),
-                  //   duration: 10.seconds,
-                  //   curve: Curves.easeInOut,
-                  // )
-                  // .fadeIn(duration: 1.seconds)
-                  // .saturate(begin: 0, end: 1, duration: 2.seconds),
+          child: Image.network(
+            'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
+            fit: BoxFit.cover,
+          ),
         ),
         Positioned.fill(
           child: Container(
-
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -52,9 +38,7 @@ class HeroSection extends StatelessWidget {
                 ],
               ),
             ),
-          )
-
-
+          ),
         ),
 
         // Content
@@ -132,16 +116,16 @@ class HeroSection extends StatelessWidget {
             ],
           ),
         ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
-        const SizedBox(height: 48),
+        const SizedBox(height: 32),
         RichText(
           text: TextSpan(
             style: isMobile
-                ? AppTextStyle.h1.copyWith(height: 1.2, fontSize: 26)
+                ? AppTextStyle.h1.copyWith(height: 1.2, fontSize: 24)
                 : AppTextStyle.h1.copyWith(height: 1.2),
             children: [
               const TextSpan(
                 text: 'Building the\n',
-                style: TextStyle(letterSpacing: 0.4, wordSpacing: 0.4),
+                style: TextStyle(letterSpacing: 0.8, wordSpacing: 0.4),
               ),
               TextSpan(
                 text: 'Digital Future',
@@ -150,7 +134,7 @@ class HeroSection extends StatelessWidget {
                     ..shader = AppColours.primaryGradient.createShader(
                       const Rect.fromLTWH(0.0, 0.0, 300.0, 70.0),
                     ),
-                  letterSpacing: 0.4,
+                  letterSpacing: 0.8,
                   wordSpacing: 0.4,
                 ),
               ),
@@ -159,11 +143,12 @@ class HeroSection extends StatelessWidget {
         ).animate().fadeIn(delay: 200.ms, duration: 800.ms).slideY(begin: 0.2),
         const SizedBox(height: 24),
         Text(
-          'We craft high-performance websites, mobile apps, and enterprise software that drives growth. Trusted by industry leaders.',
+          'We design and develop high-performance, scalable websites, mobile applications, and enterprise software solutions that accelerate business growth and digital transformation. Our expert team specializes in custom web development, mobile app development, and enterprise software engineering using modern technologies to deliver secure, fast, and user-centric digital products. Trusted by industry leaders worldwide, we help businesses improve efficiency, enhance user experience, increase online visibility, and achieve measurable results through innovative, reliable, and future-ready technology solutions.',
           style: AppTextStyle.bodyLarge.copyWith(
             color: AppColours.textSecondary,
             fontSize: isMobile ? 14 : 18,
           ),
+          textAlign: TextAlign.justify,
         ).animate().fadeIn(delay: 400.ms).slideY(begin: 0.2),
         const SizedBox(height: 48),
         isMobile
@@ -171,7 +156,7 @@ class HeroSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   GradientButton(
-                        text: 'Start Your Project',
+                        text: 'Start Your Projects',
                         onPressed: () {
                           onContactTap?.call();
                         },
@@ -203,7 +188,7 @@ class HeroSection extends StatelessWidget {
             : Row(
                 children: [
                   GradientButton(
-                        text: 'Start Your Project',
+                        text: 'Start Your Projects',
                         onPressed: () {
                           Navigator.pop(context);
                           onContactTap?.call();
@@ -238,81 +223,6 @@ class HeroSection extends StatelessWidget {
     );
   }
 
-  Widget _build3DElement() {
-    return SizedBox(
-      height: 500,
-      width: double.infinity,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          // Ambient Glow Pulse
-          Container(
-                width: 250,
-                height: 250,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColours.primary.withValues(alpha: 0.2),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColours.primary.withValues(alpha: 0.3),
-                      blurRadius: 60,
-                      spreadRadius: 20,
-                    ),
-                  ],
-                ),
-              )
-              .animate(onPlay: (c) => c.repeat(reverse: true))
-              .scale(
-                begin: const Offset(1, 1),
-                end: const Offset(1.5, 1.5),
-                duration: 3.seconds,
-                curve: Curves.easeInOut,
-              )
-              .fade(begin: 0.2, end: 0.6, duration: 3.seconds),
-
-          // Main 3D Card
-          ClipRRect(
-                borderRadius: BorderRadius.circular(24),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: Container(
-                    width: 350,
-                    height: 220,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.05),
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.1),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.2),
-                          blurRadius: 30,
-                          offset: const Offset(0, 20),
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.code_off,
-                        size: 80,
-                        color: AppColours.primaryLight,
-                      ),
-                    ),
-                  ),
-                ),
-              )
-              .animate(onPlay: (c) => c.repeat(reverse: true))
-              .moveY(
-                begin: 0,
-                end: -20,
-                duration: 3.seconds,
-                curve: Curves.easeInOut,
-              ),
-        ],
-      ),
-    );
-  }
 }
 
 class _GlassButton extends StatelessWidget {
