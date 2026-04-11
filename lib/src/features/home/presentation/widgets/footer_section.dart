@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'dart:ui';
 
-import 'package:code_line/src/common_widgets/glass_container.dart';
-import 'package:code_line/src/common_widgets/gradient_button.dart';
-import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
-import 'package:code_line/src/constants/app_constants.dart';
+import 'package:infobluera/src/common_widgets/glass_container.dart';
+import 'package:infobluera/src/common_widgets/gradient_button.dart';
+import 'package:infobluera/src/common_widgets/responsive_wrapper.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -169,7 +169,7 @@ class _FooterSectionState extends State<FooterSection> {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Text(
-                        '© 2026 Codeline. All rights reserved.',
+                        '© 2026 InfoBluera. All rights reserved.',
                         style: AppTextStyle.caption.copyWith(
                           color: AppColours.textTertiary,
                         ),
@@ -224,7 +224,7 @@ class _FooterSectionState extends State<FooterSection> {
               child: Icon(Icons.code, color: AppColours.primary, size: 32),
             ),
             const SizedBox(width: 16),
-            Text('Codeline', style: AppTextStyle.h2.copyWith(fontSize: 32)),
+            Text('InfoBluera', style: AppTextStyle.h2.copyWith(fontSize: 32)),
           ],
         ),
         const SizedBox(height: 24),

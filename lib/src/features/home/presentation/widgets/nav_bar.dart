@@ -1,7 +1,7 @@
-import 'package:code_line/src/common_widgets/glass_container.dart';
-import 'package:code_line/src/common_widgets/gradient_button.dart';
-import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
-import 'package:code_line/src/constants/app_constants.dart';
+import 'package:infobluera/src/common_widgets/glass_container.dart';
+import 'package:infobluera/src/common_widgets/gradient_button.dart';
+import 'package:infobluera/src/common_widgets/responsive_wrapper.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
@@ -38,10 +38,25 @@ class NavBar extends StatelessWidget {
                 children: [
                   Icon(Icons.code, color: AppColours.primary, size: 32),
                   const SizedBox(width: 8),
-                  Text(
-                    'Codeline',
-                    style: AppTextStyle.h4.copyWith(
-                      fontWeight: FontWeight.bold,
+                  // Text(
+                  //   'InfoBluera',
+                  //   style: AppTextStyle.h4.copyWith(
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+                  ShaderMask(
+                    shaderCallback: (bounds) => const LinearGradient(
+                      colors: [
+                        Color(0xFF6C63FF), // purple
+                        Color(0xFF00D4FF), // blue
+                      ],
+                    ).createShader(bounds),
+                    child: Text(
+                      'InfoBluera',
+                      style: AppTextStyle.h4.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
@@ -56,11 +71,7 @@ class NavBar extends StatelessWidget {
                   _NavBarItem(title: 'About', onTap: onAboutTap),
                   _NavBarItem(title: 'Services', onTap: onServicesTap),
                   _NavBarItem(title: 'Portfolio', onTap: onPortfolioTap),
-                  const SizedBox(width: 24),
-                  GradientButton(
-                    text: 'Contact Us',
-                    onPressed: onContactTap ?? () {},
-                  ),
+                  _NavBarItem(title: 'Contact Us', onTap: onPortfolioTap),
                 ],
               )
             else
@@ -83,12 +94,7 @@ class _NavBarItem extends StatelessWidget {
   final bool isActive;
   final VoidCallback? onTap;
 
-  const _NavBarItem({
-    
-    required this.title,
-    this.isActive = false,
-    this.onTap,
-  });
+  const _NavBarItem({required this.title, this.isActive = false, this.onTap});
 
   @override
   Widget build(BuildContext context) {

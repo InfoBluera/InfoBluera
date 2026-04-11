@@ -1,9 +1,9 @@
-import 'package:code_line/src/common_widgets/standard_excellence_card.dart';
-import 'package:code_line/src/features/home/domain/project_model.dart';
-import 'package:code_line/src/features/home/presentation/widgets/project_detail_view.dart';
+import 'package:infobluera/src/common_widgets/standard_excellence_card.dart';
+import 'package:infobluera/src/features/home/domain/project_model.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/project_detail_view.dart';
 import 'package:flutter/material.dart';
-import 'package:code_line/src/constants/app_constants.dart';
-import 'package:code_line/src/common_widgets/responsive_wrapper.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
+import 'package:infobluera/src/common_widgets/responsive_wrapper.dart';
 
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -142,7 +142,7 @@ class PortfolioSection extends StatelessWidget {
     // );
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 100),
+      padding:  EdgeInsets.symmetric(vertical: ResponsiveWrapper.isMobile(context)?32:100),
       width: double.infinity,
       child: Column(
         children: [
@@ -156,7 +156,7 @@ class PortfolioSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'FEATURED WORK',
+                      'Featured Work',
                       style: AppTextStyle.caption.copyWith(
                         color: AppColours.accent,
                         fontWeight: FontWeight.bold,
@@ -170,7 +170,7 @@ class PortfolioSection extends StatelessWidget {
                       'Our Standard of Excellence',
                       textAlign: TextAlign.center,
                       style: ResponsiveWrapper.isMobile(context)
-                          ? AppTextStyle.h2.copyWith(fontSize: 32)
+                          ? AppTextStyle.h2.copyWith(fontSize: 24)
                           : AppTextStyle.h2,
                     ).animate().fadeIn().slideY(),
                   ],

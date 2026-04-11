@@ -1,12 +1,12 @@
-import 'package:code_line/src/constants/app_constants.dart';
-import 'package:code_line/src/features/home/presentation/widgets/about_us_section.dart';
-import 'package:code_line/src/features/home/presentation/widgets/footer_section.dart';
-import 'package:code_line/src/features/home/presentation/widgets/hero_section.dart';
-import 'package:code_line/src/features/home/presentation/widgets/mobile_drawer.dart';
-import 'package:code_line/src/features/home/presentation/widgets/nav_bar.dart';
-import 'package:code_line/src/features/home/presentation/widgets/portfolio_section.dart';
-import 'package:code_line/src/features/home/presentation/widgets/services_section.dart';
-import 'package:code_line/src/features/home/presentation/widgets/team_section.dart';
+import 'package:infobluera/src/constants/app_constants.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/about_us_section.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/footer_section.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/hero_section.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/mobile_drawer.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/nav_bar.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/portfolio_section.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/services_section.dart';
+import 'package:infobluera/src/features/home/presentation/widgets/team_section.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -44,12 +44,15 @@ class HomeScreen extends StatelessWidget {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  HeroSection(key: _homeKey),
+                  HeroSection(
+                    key: _homeKey,
+                    onPortfolioTap: () => _scrollToSection(_portfolioKey),
+                    onContactTap: () => _scrollToSection(_contactKey),
+                  ),
                   AboutUsSection(key: _aboutKey),
                   ServicesSection(key: _servicesKey),
                   PortfolioSection(key: _portfolioKey),
                   TeamSection(),
-                  // Assuming FooterSection contains Contact info, or use it as Contact section
                   FooterSection(key: _contactKey),
                 ],
               ),

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <base href="$FLUTTER_BASE_HREF">
@@ -12,9 +13,11 @@
   <!-- Primary SEO -->
   <title>Infobluera | Scalable Web, Mobile & Backend Development Company</title>
 
-  <meta name="description" content="Infobluera is a modern IT solutions company building scalable web applications, mobile apps, and secure backend systems. We transform business ideas into high-performance digital products with clean architecture and cloud-ready infrastructure.">
+  <meta name="description"
+    content="Infobluera is a modern IT solutions company building scalable web applications, mobile apps, and secure backend systems. We transform business ideas into high-performance digital products with clean architecture and cloud-ready infrastructure.">
 
-  <meta name="keywords" content="Infobluera, IT Company India, Web Development, Flutter Developer, Node.js Developer, Backend API Development, AWS Deployment, Mobile App Development, Business Website Development, Scalable Software Solutions">
+  <meta name="keywords"
+    content="Infobluera, IT Company India, Web Development, Flutter Developer, Node.js Developer, Backend API Development, AWS Deployment, Mobile App Development, Business Website Development, Scalable Software Solutions">
 
   <meta name="author" content="Infobluera">
   <meta name="robots" content="index, follow">
@@ -33,7 +36,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Infobluera | Scalable Digital Solutions Company">
-  <meta property="og:description" content="We build scalable web platforms, mobile applications, and secure backend systems designed for long-term business growth.">
+  <meta property="og:description"
+    content="We build scalable web platforms, mobile applications, and secure backend systems designed for long-term business growth.">
   <meta property="og:url" content="https://www.infobluera.com/">
   <meta property="og:site_name" content="Infobluera">
   <meta property="og:image" content="https://www.infobluera.com/preview.png">
@@ -42,7 +46,8 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Infobluera | Scalable Web & Mobile Development">
-  <meta name="twitter:description" content="High-performance digital solutions including websites, mobile apps, and backend systems.">
+  <meta name="twitter:description"
+    content="High-performance digital solutions including websites, mobile apps, and backend systems.">
   <meta name="twitter:image" content="https://www.infobluera.com/preview.png">
 
   <!-- PWA -->
@@ -54,7 +59,7 @@
   <link rel="manifest" href="manifest.json">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <!-- Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,48 +69,79 @@
   <!-- Security
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
 
-  <!-- Structured Data (Organization Schema) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Infobluera",
-    "url": "https://www.infobluera.com",
-    "logo": "https://www.infobluera.com/icons/Icon-512.png",
-    "description": "Infobluera is a scalable IT solutions company specializing in web, mobile, and backend development.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "IN",
-      "addressRegion": "Kerala"
-    },
-    "sameAs": [
-      "https://github.com/InfoBluera"
-    ]
-  }
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMNMRLBG40"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-DMNMRLBG40');
   </script>
 
-  <!-- Structured Data (IT Service) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Infobluera",
-    "url": "https://www.infobluera.com",
-    "areaServed": "Worldwide",
-    "serviceType": [
-      "Web Development",
-      "Mobile App Development",
-      "Backend API Development",
-      "Cloud Deployment",
-      "Flutter Development",
-      "Node.js Development"
-    ]
-  }
-  </script>
+
+  <!-- Structured Data (Organization Schema) -->
+ <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.infobluera.com/#organization",
+      "name": "Infobluera",
+      "url": "https://www.infobluera.com",
+      "logo": "https://www.infobluera.com/icons/Icon-512.png",
+      "description": "Infobluera is a global remote IT solutions company specializing in scalable web applications, mobile app development, backend systems, and cloud deployment.",
+      "founder": {
+        "@type": "Person",
+        "name": "Rishad"
+      },
+      "foundingDate": "2026",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kochi",
+        "addressRegion": "Kerala",
+        "addressCountry": "IN"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Worldwide"
+      },
+      "sameAs": [
+        "https://github.com/InfoBluera"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.infobluera.com/#service",
+      "name": "Infobluera",
+      "url": "https://www.infobluera.com",
+      "provider": {
+        "@id": "https://www.infobluera.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Worldwide"
+      },
+      "serviceType": [
+        "Web Development",
+        "Mobile App Development",
+        "Backend API Development",
+        "Cloud Deployment",
+        "Flutter Development",
+        "Node.js Development"
+      ]
+    }
+  ]
+}
+</script>
+
 
 </head>
 
 <body>
   <script src="flutter_bootstrap.js" async></script>
 </body>
+
 </html>
